@@ -6,12 +6,13 @@ public class Wall : MonoBehaviour
 {
 	public bool dead = false;
 	public Sprite sprite;
+	private float defenseLevel = 1f;
 	private float maxHp = 20;
     private float hp = 0;
 	private SpriteRenderer spriteRenderer;
 	private Collider2D col;
 	private HpBar hpBar;
-
+	public int WallDefenseLevel { get => (int)defenseLevel; }
 	public void Start()
 	{
 		hpBar = gameObject.GetComponentInChildren<HpBar>();
@@ -21,10 +22,17 @@ public class Wall : MonoBehaviour
 
 		hpBar.SetMaxHp(maxHp);
 	}
-
+	public void increaseDefenseLevel()
+	{
+		defenseLevel += 1f;
+	}
+	public void restoreAllHP()
+	{
+		hp = maxHp;
+	}
 	public void takeDamage(float damage) {
 		if (!dead) {
-			hp -= damage;
+			hp -= damage / defenseLevel;
 			hpBar.SetHp(hp);
 
 			if (hp <= 0)

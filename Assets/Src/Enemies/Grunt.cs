@@ -8,6 +8,8 @@ public class Grunt : MonoBehaviour, Enemy
 	private GruntState state;
 	private float newAngleCooldown = 3.0f;
 	private float angle;
+	private float attackCooldown = 0f;
+	private Wall wall;
 
 	private void Start()
 	{
@@ -39,17 +41,27 @@ public class Grunt : MonoBehaviour, Enemy
 				body.AddForce(forcedir * moveForce);
 				break;
 			case GruntState.Attacking:
+				if (wall.dead) {
+					state = GruntState.Moving;
+				}
+
+				attackCooldown -= Time.deltaTime;
+				if (attackCooldown <= 0) {
+					wall.takeDamage(1);
+					attackCooldown = 1f;
+				}
+
 				break;
 		}
+
 		body.velocity = body.velocity * 0.9f;
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		//Debug.Log(collision.gameObject);
 		if (collision.gameObject.CompareTag("Wall"))
 		{
-			Debug.Log(collision.gameObject);
+			wall = collision.gameObject.GetComponent<Wall>();
 			state = GruntState.Attacking;
 		}
 	}

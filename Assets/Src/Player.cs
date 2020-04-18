@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+	public Texture2D cursor;
 	private Rigidbody2D body;
 	private Weapon weapon;
 
@@ -11,6 +12,7 @@ public class Player : MonoBehaviour
 	{
 		body = GetComponent<Rigidbody2D>();
 		weapon = GetComponentInChildren<Weapon>();
+		// Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
 	}
 
 	void Update()
@@ -21,11 +23,13 @@ public class Player : MonoBehaviour
 		body.AddForce(5 * new Vector2(moveHorizontal, moveVertical));
 		body.velocity = body.velocity * 0.9f;
 
-		var positionOnScreen = Camera.main.WorldToViewportPoint(transform.position);
-		var mouseOnScreen = (Vector2)Camera.main.ScreenToViewportPoint(Input.mousePosition);
-		var angle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen) + 90f;
-
-		transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
+		var upAxis = new Vector3(0, 0, -1);
+		var mouseScreenPosition = Input.mousePosition;
+		mouseScreenPosition.z = transform.position.z;
+		var mouseWorldSpace = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
+		transform.LookAt(mouseWorldSpace, upAxis);
+		transform.eulerAngles = new Vector3(0, 0, -transform.eulerAngles.z);
+		transform.rotation *= Quaternion.Euler(new Vector3(0, 0, 180f));
 
 		if (Input.GetButton("Fire1")) {
 			weapon.Fire(Time.deltaTime);

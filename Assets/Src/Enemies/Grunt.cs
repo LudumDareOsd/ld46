@@ -16,13 +16,11 @@ public class Grunt : EnemyBase
 
 	private void Update()
 	{
-		newAngleCooldown += Time.deltaTime;
-
 		switch (state)
 		{
 			case GruntState.Moving:
 				setAngle();
-				body.AddForce(transform.right * moveForce); // EEH no bueno
+				body.AddForce(transform.right * moveForce);
 				break;
 			case GruntState.Attacking:
 				if (wall.dead) {

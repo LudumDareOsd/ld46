@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿﻿using UnityEngine;
 
 public class SuicideBomber : EnemyBase
 {
@@ -8,6 +8,7 @@ public class SuicideBomber : EnemyBase
 	public void Update() {
 		setAngle();
 		body.AddForce(transform.right * moveForce);
+		body.velocity = body.velocity * 0.9f;
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
@@ -19,4 +20,6 @@ public class SuicideBomber : EnemyBase
 			takeDamage(100);
 		}
 	}
+
 }
+

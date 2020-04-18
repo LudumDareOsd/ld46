@@ -13,9 +13,13 @@ public class EnemyBase : MonoBehaviour, Enemy
 	public void Start() {
 		hp = maxHp;
 		body = GetComponent<Rigidbody2D>();
+		var norm = transform.position / -transform.position.magnitude; // inverted normal
+		angle = Mathf.Atan2(norm.y, norm.x) * Mathf.Rad2Deg;
+		transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 	}
 
 	protected void setAngle() {
+		newAngleCooldown += Time.deltaTime;
 		var norm = transform.position / -transform.position.magnitude; // inverted normal
 		if (newAngleCooldown >= 3.0f)
 		{
@@ -33,7 +37,9 @@ public class EnemyBase : MonoBehaviour, Enemy
 		hp -= damage;
 
 		if (hp <= 0) {
-			Instantiate(corpse, transform.position, transform.rotation);
+			if (corpse) {
+				Instantiate(corpse, transform.position, transform.rotation);
+			}
 			Destroy(gameObject);
 		}
 	}

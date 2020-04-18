@@ -40,6 +40,4 @@ public class Wall : MonoBehaviour
 		Destroy(col);
 		Destroy(hpBar.gameObject);
 	}
-
-
 }

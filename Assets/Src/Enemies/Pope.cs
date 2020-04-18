@@ -1,35 +1,39 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class Grunt : EnemyBase
+public class Pope : EnemyBase
 {
-	public float moveForce = 0.5f;
+	public float moveForce = 0.4f;
 
-	private GruntState state;
+	private PopeState state;
 	private float attackCooldown = 0f;
 	private Wall wall;
 
 	public new void Start()
 	{
 		base.Start();
-		state = GruntState.Moving;
+		state = PopeState.Moving;
 	}
 
-	private void Update()
+	public void Update()
 	{
 		switch (state)
 		{
-			case GruntState.Moving:
+			case PopeState.Moving:
 				setAngle();
 				body.AddForce(transform.right * moveForce);
 				break;
-			case GruntState.Attacking:
-				if (wall.dead) {
-					state = GruntState.Moving;
+			case PopeState.Attacking:
+				if (wall.dead)
+				{
+					state = PopeState.Moving;
 				}
 				attackCooldown -= Time.deltaTime;
-				if (attackCooldown <= 0) {
-					wall.takeDamage(1);
-					attackCooldown = 1f;
+				if (attackCooldown <= 0)
+				{
+					wall.takeDamage(5);
+					attackCooldown = 2f;
 				}
 				break;
 		}
@@ -42,11 +46,11 @@ public class Grunt : EnemyBase
 		if (collision.gameObject.CompareTag("Wall"))
 		{
 			wall = collision.gameObject.GetComponent<Wall>();
-			state = GruntState.Attacking;
+			state = PopeState.Attacking;
 		}
 	}
 
-	internal enum GruntState
+	internal enum PopeState
 	{
 		Initial,
 		Moving,

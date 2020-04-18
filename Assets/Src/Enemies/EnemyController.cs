@@ -1,86 +1,82 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
-/**
- * Per våg hur många fiender av varje typ
- * Spawna i samma ordning varje gång, men olika spawnpoints
- * Trigger när det är klart 
- * Något som gör det svårare per våg
- */
 
 public class EnemyController : MonoBehaviour
 {
 	public GameObject enemyContainer;
-	public GameObject gruntPrefab, suiciderPrefab;
+	public GameObject gruntPrefab, suiciderPrefab, cardinalPrefab, popePrefab;
 	public GameObject[] spawnPoints;
 
-	private float totalWaveTime = 10.0f;
+	private float totalWaveTime = 15.0f;
 	private float spawnDelay = 3.0f;
 
-	//private HudController hud;
 	private float waveTimer = 0.0f;
 	private float spawnTimer = 0.0f;
+	private int currentMob = 0;
+	private int aliveMobs = 0;
+	private int totalMobs = 0;
 
-	void Start()
-    {
-		//gruntPrefab = (GameObject)Resources.Load("Prefabs/Enemies/grunt", typeof(GameObject));
-		//Debug.Log(enemyContainer);
-		//Debug.Log(gruntPrefab);
-		SpawnGrunt();
-    }
-
-    void Update()
-    {
-
-	}
-
-	void SpawnGrunt()
+	void SpawnEnemy(GameObject prefab)
 	{
 		var spawnpoint = Random.Range(0, spawnPoints.Length);
 		var pos = spawnPoints[spawnpoint].transform.position;
-		var grunt = Instantiate(gruntPrefab, pos, Quaternion.identity);
-		grunt.transform.SetParent(enemyContainer.transform);
+		var mob = Instantiate(prefab, pos, Quaternion.identity);
+		mob.transform.SetParent(enemyContainer.transform);
 	}
 
-	void SpawnSuicider()
+	public void StartWave(int newWave, System.Action callback)
 	{
-		var spawnpoint = Random.Range(0, spawnPoints.Length);
-		var pos = spawnPoints[spawnpoint].transform.position;
-		var suicider = Instantiate(suiciderPrefab, pos, Quaternion.identity);
-		suicider.transform.SetParent(enemyContainer.transform);
-	}
-
-	public void StartWave(int newWave)
-	{
-		var isBosswave = newWave % 10 == 0;
-		Debug.Log("Spawning wave " + newWave + " Boss: " + isBosswave);
+		var isBosswave = newWave % 5 == 0;
 		waveTimer = spawnTimer = 0.0f;
-		spawnDelay = 1.0f;
-		StartCoroutine(SpawnWave());
+		currentMob = 0;
+		totalMobs = 3 + newWave;
+		aliveMobs = totalMobs;
+		spawnDelay = totalWaveTime / (totalMobs + 1);
+		//spawnDelay = 3.0f - (2.0f * (newWave / 10)); // Wave 1 = 3sec, wave 10 = 1sec between spawns
+		Debug.Log("Spawning wave:" + newWave + " Mobs: " + totalMobs + " Bosswave:" + isBosswave);
+		StartCoroutine(SpawnWave(callback, isBosswave));
 	}
 
-	// every 2 seconds perform the print()
-	private IEnumerator SpawnWave()
+	public float WaveProgress()
+	{
+		return 1.0f - Mathf.Min((float)aliveMobs / (float)totalMobs, 1.0f);
+	}
+
+	private IEnumerator SpawnWave(System.Action callback = null, bool bosswave = false)
 	{
 		while (true)
 		{
 			waveTimer += .1f;
 			spawnTimer += .1f;
-			if (spawnTimer > spawnDelay)
+			if (waveTimer > totalWaveTime && aliveMobs <= 0)
 			{
-				if (Random.Range(0, 3) > 1) {
-					SpawnSuicider();
+				callback();
+				yield break;
+			}
+
+			if (waveTimer <= totalWaveTime && spawnTimer > spawnDelay)
+			{
+				currentMob++;
+
+				Debug.Log(currentMob % totalMobs);
+
+				if (bosswave && currentMob % totalMobs == 0) { // last mob on bosswave is pope?
+					SpawnEnemy(popePrefab);
+				} else if (currentMob % 3 == 0) {
+					SpawnEnemy(suiciderPrefab);
+				} else if (currentMob % 4 == 0) {
+					SpawnEnemy(cardinalPrefab);
 				} else {
-					SpawnGrunt();
+					SpawnEnemy(gruntPrefab);
 				}
 				spawnTimer -= spawnDelay;
 			}
-			if (waveTimer > totalWaveTime)
-			{
-				waveTimer -= totalWaveTime;
-			}
 			yield return new WaitForSeconds(.1f);
 		}
+	}
+
+	public void EnemyDied()
+	{
+		aliveMobs--;
 	}
 }

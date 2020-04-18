@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
@@ -15,7 +12,7 @@ public class GameController : MonoBehaviour
 	private EnemyController enemyController;
 	private HudController hudController;
 
-    void Start()
+	void Start()
     {
 		enemyController = FindObjectOfType<EnemyController>();
 		hudController = FindObjectOfType<HudController>();
@@ -27,7 +24,7 @@ public class GameController : MonoBehaviour
 		hudController.CloseUpgradeScreen_Chosen += CloseUpgradeScreen;
 		hudController.SetWave(wave);
 		hudController.SetScore(score);
-		enemyController.StartWave(wave);
+		enemyController.StartWave(wave, WaveFinished);
 	}
 
 	void Update()
@@ -104,6 +101,13 @@ public class GameController : MonoBehaviour
 		status = GameStatus.Start;
 		hudController.CloseUpgradeScreen();
 	}
+	public void WaveFinished()
+	{
+		wave++;
+		status = GameStatus.Upgrade; // Do the upgrade stuffz
+		enemyController.StartWave(wave, WaveFinished);
+	}
+
 	internal enum GameStatus
 	{
 		Start,

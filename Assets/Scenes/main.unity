@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dead: 0
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: a7d3d56654feff7479668f7d29a50bab, type: 3}
 --- !u!1 &62650180
 GameObject:
   m_ObjectHideFlags: 0
@@ -1169,7 +1169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 314055585}
   - component: {fileID: 314055586}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: playercollider (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1849,7 +1849,7 @@ GameObject:
   m_Component:
   - component: {fileID: 961476540}
   - component: {fileID: 961476541}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: playercollider (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2636,7 +2636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dead: 0
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 6e3e500103439bd4fb4a6231d68959c4, type: 3}
 --- !u!1 &1414956064
 GameObject:
   m_ObjectHideFlags: 0
@@ -3075,7 +3075,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1981909974}
   - component: {fileID: 1981909975}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: playercollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

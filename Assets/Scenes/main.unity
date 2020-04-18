@@ -264,6 +264,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db6ec40ec08cba458db0562b164283c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dead: 0
+  sprite: {fileID: 21300000, guid: a7d3d56654feff7479668f7d29a50bab, type: 3}
 --- !u!1 &64830149
 GameObject:
   m_ObjectHideFlags: 0
@@ -882,6 +884,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db6ec40ec08cba458db0562b164283c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dead: 0
+  sprite: {fileID: 21300000, guid: 60f913c98a6f6094d906a51fe83417db, type: 3}
 --- !u!1 &610401447
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,6 +937,8 @@ MonoBehaviour:
   - {fileID: 1645026585}
   - {fileID: 303644144}
   - {fileID: 223052644}
+  totalWaveTime: 10
+  spawnDelay: 3
 --- !u!1 &695813537
 GameObject:
   m_ObjectHideFlags: 0
@@ -1328,6 +1334,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db6ec40ec08cba458db0562b164283c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dead: 0
+  sprite: {fileID: 21300000, guid: 91c0a06c4852706448658a13ef019d2c, type: 3}
 --- !u!1 &1385332987
 GameObject:
   m_ObjectHideFlags: 0
@@ -1471,6 +1479,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db6ec40ec08cba458db0562b164283c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dead: 0
+  sprite: {fileID: 21300000, guid: 6e3e500103439bd4fb4a6231d68959c4, type: 3}
 --- !u!1 &1645026585
 GameObject:
   m_ObjectHideFlags: 0

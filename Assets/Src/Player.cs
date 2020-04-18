@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
 		var moveHorizontal = Input.GetAxis("Horizontal");
 		var moveVertical = Input.GetAxis("Vertical");
 
-		Debug.Log(moveVertical);
+		//Debug.Log(moveVertical);
 		body.AddForce(5 * new Vector2(moveHorizontal, moveVertical));
 		body.velocity = body.velocity * 0.9f;
 

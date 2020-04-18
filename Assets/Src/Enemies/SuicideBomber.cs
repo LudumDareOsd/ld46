@@ -5,6 +5,11 @@ public class SuicideBomber : EnemyBase
 	public float moveForce = 1.5f;
 	private Wall wall;
 
+	public new void Start()
+	{
+		base.Start();
+	}
+
 	public void Update() {
 		setAngle();
 		body.AddForce(transform.right * moveForce);

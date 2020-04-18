@@ -1611,6 +1611,8 @@ MonoBehaviour:
     type: 3}
   cardinalPrefab: {fileID: 2962228853882525396, guid: e0f5014564432c742909ee46f7a27e7e,
     type: 3}
+  popePrefab: {fileID: 2962228853882525396, guid: 9dfb90773c66d674a9bd8316c32dd5f2,
+    type: 3}
   spawnPoints:
   - {fileID: 2029590581}
   - {fileID: 1645026585}

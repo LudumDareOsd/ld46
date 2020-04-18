@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2784840640623569576}
   - component: {fileID: 3977260243451865816}
-  - component: {fileID: 2714876229795710592}
+  - component: {fileID: 959598264294239834}
   - component: {fileID: 7681320036754291036}
   - component: {fileID: 7178363881146995749}
   m_Layer: 10
-  m_Name: cardinal
+  m_Name: pope
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 280939915
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 74ee4c09e3f1a4f47a917e6e0fd901ba, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1b509a4af20262140b3daa2712fcaeb7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2714876229795710592
+--- !u!114 &959598264294239834
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,12 +93,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2962228853882525396}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e641626a135b4344582790c3158f0d9a, type: 3}
+  m_Script: {fileID: 11500000, guid: 88fd9f9a489489e49a9d6816323dc4ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  corpse: {fileID: 7843172012380975370, guid: 534efeb6c80b2f04584148a56db7fbf5, type: 3}
-  maxHp: 10
-  moveForce: 1.5
+  corpse: {fileID: 7843172012380975370, guid: b2f8d77c861c8ab478f78ae38b9b3b4a, type: 3}
+  maxHp: 50
+  moveForce: 0.2
 --- !u!50 &7681320036754291036
 Rigidbody2D:
   serializedVersion: 4
@@ -133,6 +133,6 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0072339997, y: 0}
+  m_Offset: {x: 0.008307755, y: 0}
   serializedVersion: 2
-  m_Radius: 0.11539035
+  m_Radius: 0.1884059

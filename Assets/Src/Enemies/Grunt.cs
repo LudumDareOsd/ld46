@@ -26,13 +26,11 @@ public class Grunt : EnemyBase
 				if (wall.dead) {
 					state = GruntState.Moving;
 				}
-
 				attackCooldown -= Time.deltaTime;
 				if (attackCooldown <= 0) {
 					wall.takeDamage(1);
 					attackCooldown = 1f;
 				}
-
 				break;
 		}
 

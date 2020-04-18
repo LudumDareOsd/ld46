@@ -2,38 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cardinal : EnemyBase
+public class Pope : EnemyBase
 {
-	public float moveForce = 1.5f;
+	public float moveForce = 0.4f;
 
-	private CardinalState state;
+	private PopeState state;
 	private float attackCooldown = 0f;
 	private Wall wall;
 
 	public new void Start()
 	{
 		base.Start();
-		state = CardinalState.Moving;
+		state = PopeState.Moving;
 	}
 
 	public void Update()
 	{
 		switch (state)
 		{
-			case CardinalState.Moving:
+			case PopeState.Moving:
 				setAngle();
 				body.AddForce(transform.right * moveForce);
 				break;
-			case CardinalState.Attacking:
+			case PopeState.Attacking:
 				if (wall.dead)
 				{
-					state = CardinalState.Moving;
+					state = PopeState.Moving;
 				}
 				attackCooldown -= Time.deltaTime;
 				if (attackCooldown <= 0)
 				{
-					wall.takeDamage(2);
-					attackCooldown = 1f;
+					wall.takeDamage(5);
+					attackCooldown = 2f;
 				}
 				break;
 		}
@@ -46,11 +46,11 @@ public class Cardinal : EnemyBase
 		if (collision.gameObject.CompareTag("Wall"))
 		{
 			wall = collision.gameObject.GetComponent<Wall>();
-			state = CardinalState.Attacking;
+			state = PopeState.Attacking;
 		}
 	}
 
-	internal enum CardinalState
+	internal enum PopeState
 	{
 		Initial,
 		Moving,

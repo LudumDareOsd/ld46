@@ -1,17 +1,10 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-/**
- * Per våg hur många fiender av varje typ
- * Spawna i samma ordning varje gång, men olika spawnpoints
- * Trigger när det är klart 
- * Något som gör det svårare per våg
- */
-
 public class EnemyController : MonoBehaviour
 {
 	public GameObject enemyContainer;
-	public GameObject gruntPrefab, suiciderPrefab, cardinalPrefab;
+	public GameObject gruntPrefab, suiciderPrefab, cardinalPrefab, popePrefab;
 	public GameObject[] spawnPoints;
 
 	private float totalWaveTime = 15.0f;
@@ -41,7 +34,7 @@ public class EnemyController : MonoBehaviour
 		spawnDelay = totalWaveTime / (totalMobs + 1);
 		//spawnDelay = 3.0f - (2.0f * (newWave / 10)); // Wave 1 = 3sec, wave 10 = 1sec between spawns
 		Debug.Log("Spawning wave:" + newWave + " Mobs: " + totalMobs + " Bosswave:" + isBosswave);
-		StartCoroutine(SpawnWave(callback));
+		StartCoroutine(SpawnWave(callback, isBosswave));
 	}
 
 	public float WaveProgress()
@@ -49,7 +42,7 @@ public class EnemyController : MonoBehaviour
 		return 1.0f - Mathf.Min((float)aliveMobs / (float)totalMobs, 1.0f);
 	}
 
-	private IEnumerator SpawnWave(System.Action callback = null)
+	private IEnumerator SpawnWave(System.Action callback = null, bool bosswave = false)
 	{
 		while (true)
 		{
@@ -64,7 +57,12 @@ public class EnemyController : MonoBehaviour
 			if (waveTimer <= totalWaveTime && spawnTimer > spawnDelay)
 			{
 				currentMob++;
-				if (currentMob % 3 == 0) {
+
+				Debug.Log(currentMob % totalMobs);
+
+				if (bosswave && currentMob % totalMobs == 0) { // last mob on bosswave is pope?
+					SpawnEnemy(popePrefab);
+				} else if (currentMob % 3 == 0) {
 					SpawnEnemy(suiciderPrefab);
 				} else if (currentMob % 4 == 0) {
 					SpawnEnemy(cardinalPrefab);

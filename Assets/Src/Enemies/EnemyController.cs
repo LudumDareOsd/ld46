@@ -2,18 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Per våg hur många fiender av varje typ
+ * Spawna i samma ordning varje gång, men olika spawnpoints
+ * Trigger när det är klart 
+ * Något som gör det svårare per våg
+ */
+
 public class EnemyController : MonoBehaviour
 {
 	public GameObject enemyContainer;
-	public GameObject gruntPrefab;
+	public GameObject gruntPrefab, suiciderPrefab;
 	public GameObject[] spawnPoints;
-	public float totalWaveTime = 10.0f;
-	public float spawnDelay = 3.0f;
+
+	private float totalWaveTime = 10.0f;
+	private float spawnDelay = 3.0f;
 
 	//private HudController hud;
 	private float waveTimer = 0.0f;
 	private float spawnTimer = 0.0f;
-	private int wave = 1;
 
 	void Start()
     {
@@ -25,12 +32,7 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-		waveTimer += Time.deltaTime;
-		spawnTimer += Time.deltaTime;
-		if (spawnTimer > spawnDelay) {
-			SpawnGrunt();
-			spawnTimer -= spawnDelay;
-		}
+
 	}
 
 	void SpawnGrunt()
@@ -41,8 +43,43 @@ public class EnemyController : MonoBehaviour
 		grunt.transform.SetParent(enemyContainer.transform);
 	}
 
-	void StartWave(int newWave)
+	void SpawnSuicider()
 	{
-		wave = newWave;
+		var spawnpoint = Random.Range(0, spawnPoints.Length);
+		var pos = spawnPoints[spawnpoint].transform.position;
+		var suicider = Instantiate(suiciderPrefab, pos, Quaternion.identity);
+		suicider.transform.SetParent(enemyContainer.transform);
+	}
+
+	public void StartWave(int newWave)
+	{
+		waveTimer = spawnTimer = 0.0f;
+		StartCoroutine(SpawnWave());
+	}
+
+	// every 2 seconds perform the print()
+	private IEnumerator SpawnWave()
+	{
+		while (true)
+		{
+			waveTimer += .1f;
+			spawnTimer += .1f;
+			if (spawnTimer > spawnDelay)
+			{
+				if (Random.Range(0, 3) > 1)
+				{
+					SpawnSuicider();
+				}
+				else {
+					SpawnGrunt();
+				}
+				spawnTimer -= spawnDelay;
+			}
+			if (waveTimer > totalWaveTime)
+			{
+				waveTimer -= totalWaveTime;
+			}
+			yield return new WaitForSeconds(.1f);
+		}
 	}
 }

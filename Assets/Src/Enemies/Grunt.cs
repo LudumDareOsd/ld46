@@ -35,7 +35,7 @@ public class Grunt : MonoBehaviour, Enemy
 				var currentAngle = transform.localEulerAngles.z;
 				var newangle = Mathf.LerpAngle(currentAngle, angle, Time.deltaTime);
 				transform.rotation = Quaternion.AngleAxis(newangle, Vector3.forward);
-				body.AddForce(transform.right * moveForce); // EEH no bueno
+				body.AddForce(transform.right * moveForce);
 				break;
 			case GruntState.Attacking:
 				if (wall.dead) {

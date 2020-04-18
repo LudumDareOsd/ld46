@@ -2,6 +2,7 @@
 
 public class Grunt : MonoBehaviour, Enemy
 {
+	public GameObject corpse;
 	public float moveForce = 0.5f;
 
 	private Rigidbody2D body;
@@ -64,6 +65,7 @@ public class Grunt : MonoBehaviour, Enemy
 
 	public void takeDamage(float damage)
 	{
+		Instantiate(corpse, transform.position, transform.rotation);
 		Destroy(gameObject);
 	}
 

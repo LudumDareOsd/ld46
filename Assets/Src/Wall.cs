@@ -10,17 +10,22 @@ public class Wall : MonoBehaviour
     private float hp = 0;
 	private SpriteRenderer spriteRenderer;
 	private Collider2D col;
+	private HpBar hpBar;
 
 	public void Start()
 	{
+		hpBar = gameObject.GetComponentInChildren<HpBar>();
 		spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 		col = gameObject.GetComponent<Collider2D>();
 		hp = maxHp;
+
+		hpBar.SetMaxHp(maxHp);
 	}
 
 	public void takeDamage(float damage) {
 		if (!dead) {
 			hp -= damage;
+			hpBar.SetHp(hp);
 
 			if (hp <= 0)
 			{
@@ -33,6 +38,7 @@ public class Wall : MonoBehaviour
 		dead = true;
 		spriteRenderer.sprite = sprite;
 		Destroy(col);
+		Destroy(hpBar.gameObject);
 	}
 
 

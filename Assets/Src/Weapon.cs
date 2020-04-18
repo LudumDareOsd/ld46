@@ -63,6 +63,6 @@ public class Weapon : MonoBehaviour
 		var rotation = transform.rotation * Quaternion.Euler(new Vector3(0, 0, angle));
 		var bulletInstance = Instantiate(bullet, position, rotation);
 		var bulletBody = bulletInstance.GetComponent<Rigidbody2D>();
-		bulletBody.velocity = (bulletInstance.transform.up) * 5f;
+		bulletBody.velocity = (bulletInstance.transform.up) * 3f;
 	}
 }

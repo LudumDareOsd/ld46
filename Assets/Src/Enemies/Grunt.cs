@@ -56,7 +56,7 @@ public class Grunt : MonoBehaviour, Enemy
 
 	public void takeDamage(float damage)
 	{
-
+		Destroy(gameObject);
 	}
 
 	internal enum GruntState

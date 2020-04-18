@@ -1,8 +1,14 @@
 ﻿using UnityEngine;
 
-public class SuicideBomber : MonoBehaviour
+public class SuicideBomber : EnemyBase
 {
+	public float moveForce = 1.5f;
 	private Wall wall;
+
+	public void Update() {
+		setAngle();
+		body.AddForce(transform.right * moveForce);
+	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
@@ -10,11 +16,7 @@ public class SuicideBomber : MonoBehaviour
 		{
 			wall = collision.gameObject.GetComponent<Wall>();
 			wall.takeDamage(5);
-			die();
+			takeDamage(100);
 		}
-	}
-
-	private void die() {
-		Destroy(gameObject);
 	}
 }

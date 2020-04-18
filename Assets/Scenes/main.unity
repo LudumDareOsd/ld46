@@ -1608,6 +1608,8 @@ MonoBehaviour:
     type: 3}
   suiciderPrefab: {fileID: 2642617331609813781, guid: b7963fd8e32cb4c438b03e703e95dfc7,
     type: 3}
+  cardinalPrefab: {fileID: 2962228853882525396, guid: e0f5014564432c742909ee46f7a27e7e,
+    type: 3}
   spawnPoints:
   - {fileID: 2029590581}
   - {fileID: 1645026585}

@@ -29,6 +29,7 @@ public class Wall : MonoBehaviour
 	public void restoreAllHP()
 	{
 		hp = maxHp;
+		hpBar.SetHp(hp);
 	}
 	public void takeDamage(float damage) {
 		if (!dead) {

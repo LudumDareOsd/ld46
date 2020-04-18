@@ -35,7 +35,6 @@ public class GameController : MonoBehaviour
 			case GameStatus.Start:
 				break;
 			case GameStatus.Wave:
-				hudController.SetWave(wave);
 				break;
 			case GameStatus.Upgrade:
 				hudController.showUpgradeScreen(favor, Player.PlayerWeaponLevel, Walls[0].WallDefenseLevel);
@@ -45,10 +44,6 @@ public class GameController : MonoBehaviour
 		}
 	}
 
-	public void changeToUpgrade()
-	{
-		status = GameStatus.Upgrade;
-	}
 	public void UpgradeWeapon(object sender, EventArgs e)
 	{
 		if (favor >= Player.PlayerWeaponLevel + 1 && Player.PlayerWeaponLevel < 2)
@@ -82,7 +77,7 @@ public class GameController : MonoBehaviour
 	}
 	public void RestoreWalls(object sender, EventArgs e)
 	{
-		if(favor > 0)
+		if (favor > 0)
 		{
 			favor -= 1;
 			foreach (var wall in Walls)
@@ -99,14 +94,20 @@ public class GameController : MonoBehaviour
 	}
 	public void CloseUpgradeScreen(object sender, EventArgs e)
 	{
-		status = GameStatus.Start;
+		status = GameStatus.Wave;
 		hudController.CloseUpgradeScreen();
+	}
+	public void BeginNextWave()
+	{
+		wave++;
+		enemyController.StartWave(wave, WaveFinished);
+		hudController.SetWave(wave);
 	}
 	public void WaveFinished()
 	{
-		wave++;
+		favor++;
 		status = GameStatus.Upgrade; // Do the upgrade stuffz
-		enemyController.StartWave(wave, WaveFinished);
+		Invoke("BeginNextWave", 5f);
 	}
 
 	internal enum GameStatus

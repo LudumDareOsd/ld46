@@ -79,6 +79,7 @@ public class UpgradeScreen : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public event EventHandler CloseUpgradeScreenClicked;
     public void ClickCloseUpgradeScreen()
     {
+        Debug.Log("At least the click is registered");
         var close_clicked_handler = CloseUpgradeScreenClicked;
         close_clicked_handler(this, null);
     }

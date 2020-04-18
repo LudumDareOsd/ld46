@@ -12,7 +12,8 @@ public class Player : MonoBehaviour
 	{
 		body = GetComponent<Rigidbody2D>();
 		weapon = GetComponentInChildren<Weapon>();
-		// Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
+		var cursorHotspot = new Vector2(cursor.width / 2, cursor.height / 2);
+		Cursor.SetCursor(cursor, cursorHotspot, CursorMode.Auto);
 	}
 
 	void Update()

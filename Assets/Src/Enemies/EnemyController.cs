@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /**
@@ -15,25 +14,17 @@ public class EnemyController : MonoBehaviour
 	public GameObject gruntPrefab, suiciderPrefab;
 	public GameObject[] spawnPoints;
 
-	private float totalWaveTime = 10.0f;
+	private float totalWaveTime = 15.0f;
 	private float spawnDelay = 3.0f;
 
-	//private HudController hud;
 	private float waveTimer = 0.0f;
 	private float spawnTimer = 0.0f;
+	private int currentMob = 0;
+	private int aliveMobs = 0;
 
 	void Start()
     {
-		//gruntPrefab = (GameObject)Resources.Load("Prefabs/Enemies/grunt", typeof(GameObject));
-		//Debug.Log(enemyContainer);
-		//Debug.Log(gruntPrefab);
-		SpawnGrunt();
     }
-
-    void Update()
-    {
-
-	}
 
 	void SpawnGrunt()
 	{
@@ -51,36 +42,46 @@ public class EnemyController : MonoBehaviour
 		suicider.transform.SetParent(enemyContainer.transform);
 	}
 
-	public void StartWave(int newWave)
+	public void StartWave(int newWave, System.Action callback)
 	{
-		var isBosswave = newWave % 10 == 0;
-		Debug.Log("Spawning wave " + newWave + " Boss: " + isBosswave);
+		var isBosswave = newWave % 5 == 0;
 		waveTimer = spawnTimer = 0.0f;
-		spawnDelay = 1.0f;
-		StartCoroutine(SpawnWave());
+		currentMob = aliveMobs = 0;
+		spawnDelay = 3.0f - (2.0f * (newWave / 10)); // Wave 1 = 3sec, wave 10 = 1sec between spawns
+
+		Debug.Log("Spawning wave " + newWave + " Bosswave: " + isBosswave);
+		StartCoroutine(SpawnWave(callback));
 	}
 
-	// every 2 seconds perform the print()
-	private IEnumerator SpawnWave()
+	private IEnumerator SpawnWave(System.Action callback = null)
 	{
 		while (true)
 		{
 			waveTimer += .1f;
 			spawnTimer += .1f;
-			if (spawnTimer > spawnDelay)
+			if (waveTimer > totalWaveTime && aliveMobs <= 0)
 			{
-				if (Random.Range(0, 3) > 1) {
+				callback();
+				yield break;
+			}
+
+			if (waveTimer <= totalWaveTime && spawnTimer > spawnDelay)
+			{
+				currentMob++;
+				aliveMobs++;
+				if (currentMob % 3 == 0) {
 					SpawnSuicider();
 				} else {
 					SpawnGrunt();
 				}
 				spawnTimer -= spawnDelay;
 			}
-			if (waveTimer > totalWaveTime)
-			{
-				waveTimer -= totalWaveTime;
-			}
 			yield return new WaitForSeconds(.1f);
 		}
+	}
+
+	public void EnemyDied()
+	{
+		aliveMobs--;
 	}
 }

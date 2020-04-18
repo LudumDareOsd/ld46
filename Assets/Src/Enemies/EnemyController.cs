@@ -7,10 +7,13 @@ public class EnemyController : MonoBehaviour
 	public GameObject enemyContainer;
 	public GameObject gruntPrefab;
 	public GameObject[] spawnPoints;
+	public float totalWaveTime = 10.0f;
+	public float spawnDelay = 3.0f;
 
 	//private HudController hud;
 	private float waveTimer = 0.0f;
 	private float spawnTimer = 0.0f;
+	private int wave = 1;
 
 	void Start()
     {
@@ -24,9 +27,9 @@ public class EnemyController : MonoBehaviour
     {
 		waveTimer += Time.deltaTime;
 		spawnTimer += Time.deltaTime;
-		if (spawnTimer > 5.0f) {
+		if (spawnTimer > spawnDelay) {
 			SpawnGrunt();
-			spawnTimer -= 5.0f;
+			spawnTimer -= spawnDelay;
 		}
 	}
 
@@ -36,5 +39,10 @@ public class EnemyController : MonoBehaviour
 		var pos = spawnPoints[spawnpoint].transform.position;
 		var grunt = Instantiate(gruntPrefab, pos, Quaternion.identity);
 		grunt.transform.SetParent(enemyContainer.transform);
+	}
+
+	void StartWave(int newWave)
+	{
+		wave = newWave;
 	}
 }

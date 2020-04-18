@@ -11,7 +11,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
 	public GameObject enemyContainer;
-	public GameObject gruntPrefab, suiciderPrefab;
+	public GameObject gruntPrefab, suiciderPrefab, cardinalPrefab;
 	public GameObject[] spawnPoints;
 
 	private float totalWaveTime = 15.0f;
@@ -21,25 +21,14 @@ public class EnemyController : MonoBehaviour
 	private float spawnTimer = 0.0f;
 	private int currentMob = 0;
 	private int aliveMobs = 0;
+	private int totalMobs = 0;
 
-	void Start()
-    {
-    }
-
-	void SpawnGrunt()
+	void SpawnEnemy(GameObject prefab)
 	{
 		var spawnpoint = Random.Range(0, spawnPoints.Length);
 		var pos = spawnPoints[spawnpoint].transform.position;
-		var grunt = Instantiate(gruntPrefab, pos, Quaternion.identity);
-		grunt.transform.SetParent(enemyContainer.transform);
-	}
-
-	void SpawnSuicider()
-	{
-		var spawnpoint = Random.Range(0, spawnPoints.Length);
-		var pos = spawnPoints[spawnpoint].transform.position;
-		var suicider = Instantiate(suiciderPrefab, pos, Quaternion.identity);
-		suicider.transform.SetParent(enemyContainer.transform);
+		var mob = Instantiate(prefab, pos, Quaternion.identity);
+		mob.transform.SetParent(enemyContainer.transform);
 	}
 
 	public void StartWave(int newWave, System.Action callback)
@@ -47,10 +36,16 @@ public class EnemyController : MonoBehaviour
 		var isBosswave = newWave % 5 == 0;
 		waveTimer = spawnTimer = 0.0f;
 		currentMob = aliveMobs = 0;
-		spawnDelay = 3.0f - (2.0f * (newWave / 10)); // Wave 1 = 3sec, wave 10 = 1sec between spawns
-
-		Debug.Log("Spawning wave " + newWave + " Bosswave: " + isBosswave);
+		totalMobs = 3 + newWave;
+		spawnDelay = totalWaveTime / (totalMobs + 1);
+		//spawnDelay = 3.0f - (2.0f * (newWave / 10)); // Wave 1 = 3sec, wave 10 = 1sec between spawns
+		Debug.Log("Spawning wave:" + newWave + " Mobs: " + totalMobs + " Bosswave:" + isBosswave);
 		StartCoroutine(SpawnWave(callback));
+	}
+
+	public float WaveProgress()
+	{
+		return Mathf.Min(waveTimer / totalWaveTime, 1.0f);
 	}
 
 	private IEnumerator SpawnWave(System.Action callback = null)
@@ -70,9 +65,11 @@ public class EnemyController : MonoBehaviour
 				currentMob++;
 				aliveMobs++;
 				if (currentMob % 3 == 0) {
-					SpawnSuicider();
+					SpawnEnemy(suiciderPrefab);
+				} else if (currentMob % 4 == 0) {
+					SpawnEnemy(cardinalPrefab);
 				} else {
-					SpawnGrunt();
+					SpawnEnemy(gruntPrefab);
 				}
 				spawnTimer -= spawnDelay;
 			}

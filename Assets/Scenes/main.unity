@@ -898,6 +898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa93c1f91a1d5934bab2aae0d48586da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyController: {fileID: 610401449}
   frame1: {fileID: 8588256982454725679, guid: 1804d8227a4db2d45bf2e77235e31b9f, type: 3}
   frame2: {fileID: -3506032441560358805, guid: 1804d8227a4db2d45bf2e77235e31b9f, type: 3}
   frame3: {fileID: -1476911774934521056, guid: 1804d8227a4db2d45bf2e77235e31b9f, type: 3}

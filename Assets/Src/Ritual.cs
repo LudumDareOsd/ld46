@@ -32,7 +32,7 @@ public class Ritual : MonoBehaviour
 
 	public void Update()
 	{
-		float partDone = 0f;
+		float partDone = enemyController.WaveProgress();
 
 		if (partDone < parts[1])
 		{

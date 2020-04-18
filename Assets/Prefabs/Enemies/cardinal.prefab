@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e641626a135b4344582790c3158f0d9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  corpse: {fileID: 0}
+  corpse: {fileID: 7843172012380975370, guid: 534efeb6c80b2f04584148a56db7fbf5, type: 3}
   maxHp: 10
   moveForce: 1.5
 --- !u!50 &7681320036754291036

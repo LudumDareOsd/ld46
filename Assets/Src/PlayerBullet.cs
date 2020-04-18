@@ -11,9 +11,13 @@ public class PlayerBullet : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.gameObject.layer == 9)
+		if (collision.gameObject.layer == 9 || collision.gameObject.layer == 10)
 		{
-			// collision.gameObject.GetComponent<Car>().TakeDamage(10 + Random.Range(-2, 2));
+			var enemy = collision.gameObject.GetComponent<Enemy>();
+
+			if (enemy != null) {
+				enemy.takeDamage(1f);
+			}
 			Destroy(gameObject);
 		}
 	}

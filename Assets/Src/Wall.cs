@@ -37,7 +37,7 @@ public class Wall : MonoBehaviour
 	private void die() {
 		dead = true;
 		spriteRenderer.sprite = sprite;
-		Destroy(col);
-		Destroy(hpBar.gameObject);
+		col.enabled = false;
+		hpBar.gameObject.SetActive(false);
 	}
 }

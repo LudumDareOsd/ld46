@@ -35,8 +35,9 @@ public class EnemyController : MonoBehaviour
 	{
 		var isBosswave = newWave % 5 == 0;
 		waveTimer = spawnTimer = 0.0f;
-		currentMob = aliveMobs = 0;
+		currentMob = 0;
 		totalMobs = 3 + newWave;
+		aliveMobs = totalMobs;
 		spawnDelay = totalWaveTime / (totalMobs + 1);
 		//spawnDelay = 3.0f - (2.0f * (newWave / 10)); // Wave 1 = 3sec, wave 10 = 1sec between spawns
 		Debug.Log("Spawning wave:" + newWave + " Mobs: " + totalMobs + " Bosswave:" + isBosswave);
@@ -45,7 +46,7 @@ public class EnemyController : MonoBehaviour
 
 	public float WaveProgress()
 	{
-		return Mathf.Min(waveTimer / totalWaveTime, 1.0f);
+		return 1.0f - Mathf.Min((float)aliveMobs / (float)totalMobs, 1.0f);
 	}
 
 	private IEnumerator SpawnWave(System.Action callback = null)
@@ -63,7 +64,6 @@ public class EnemyController : MonoBehaviour
 			if (waveTimer <= totalWaveTime && spawnTimer > spawnDelay)
 			{
 				currentMob++;
-				aliveMobs++;
 				if (currentMob % 3 == 0) {
 					SpawnEnemy(suiciderPrefab);
 				} else if (currentMob % 4 == 0) {

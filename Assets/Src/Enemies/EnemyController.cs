@@ -53,7 +53,10 @@ public class EnemyController : MonoBehaviour
 
 	public void StartWave(int newWave)
 	{
+		var isBosswave = newWave % 10 == 0;
+		Debug.Log("Spawning wave " + newWave + " Boss: " + isBosswave);
 		waveTimer = spawnTimer = 0.0f;
+		spawnDelay = 1.0f;
 		StartCoroutine(SpawnWave());
 	}
 
@@ -66,11 +69,9 @@ public class EnemyController : MonoBehaviour
 			spawnTimer += .1f;
 			if (spawnTimer > spawnDelay)
 			{
-				if (Random.Range(0, 3) > 1)
-				{
+				if (Random.Range(0, 3) > 1) {
 					SpawnSuicider();
-				}
-				else {
+				} else {
 					SpawnGrunt();
 				}
 				spawnTimer -= spawnDelay;

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -47,4 +48,10 @@ TagManager:
     locked: 0
   - name: ForeGround
     uniqueID: 387134801
+    locked: 0
+  - name: Character
+    uniqueID: 280939915
+    locked: 0
+  - name: Top
+    uniqueID: 4138299169
     locked: 0

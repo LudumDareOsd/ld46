@@ -1,16 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-enum GruntState
-{
-	Initial,
-	Moving,
-	Attacking,
-	Dead
-}
-
-public class Grunt : MonoBehaviour
+public class Grunt : MonoBehaviour, Enemy
 {
 	public float moveForce = 0.5f;
 
@@ -19,16 +9,16 @@ public class Grunt : MonoBehaviour
 	private float newAngleCooldown = 3.0f;
 	private float angle;
 
-	void Start()
-    {
+	private void Start()
+	{
 		state = GruntState.Moving;
 		body = GetComponent<Rigidbody2D>();
 	}
 
-	void Update()
-    {
+	private void Update()
+	{
 		newAngleCooldown += Time.deltaTime;
-		
+
 		switch (state)
 		{
 			case GruntState.Moving:
@@ -47,7 +37,7 @@ public class Grunt : MonoBehaviour
 				transform.rotation = Quaternion.AngleAxis(newangle, Vector3.forward);
 				//body.AddForce(transform.forward * 10.0f); // EEH no bueno
 				body.AddForce(forcedir * moveForce);
-			break;
+				break;
 			case GruntState.Attacking:
 				break;
 		}
@@ -62,5 +52,18 @@ public class Grunt : MonoBehaviour
 			Debug.Log(collision.gameObject);
 			state = GruntState.Attacking;
 		}
+	}
+
+	public void takeDamage(float damage)
+	{
+		Destroy(gameObject);
+	}
+
+	internal enum GruntState
+	{
+		Initial,
+		Moving,
+		Attacking,
+		Dead
 	}
 }

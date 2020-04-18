@@ -17,7 +17,6 @@ public class EnemyController : MonoBehaviour
 		//gruntPrefab = (GameObject)Resources.Load("Prefabs/Enemies/grunt", typeof(GameObject));
 		//Debug.Log(enemyContainer);
 		//Debug.Log(gruntPrefab);
-
 		SpawnGrunt();
     }
 

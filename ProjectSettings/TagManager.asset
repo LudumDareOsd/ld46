@@ -5,7 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
-  - Wall
   layers:
   - Default
   - TransparentFX
@@ -15,9 +14,9 @@ TagManager:
   - UI
   - 
   - 
-  - Background
-  - 
-  - 
+  - PlayerBullet
+  - Chamber
+  - Enemy
   - 
   - 
   - 
@@ -40,12 +39,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Background
-    uniqueID: 3615683141
-    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Foreground
-    uniqueID: 2346647995
+  - name: Background
+    uniqueID: 1356724387
+    locked: 0
+  - name: ForeGround
+    uniqueID: 387134801
     locked: 0

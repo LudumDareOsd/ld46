@@ -40,7 +40,7 @@ public class Grunt : MonoBehaviour
 					newAngleCooldown -= 3.0f - Random.Range(0f, 3.0f);
 				}
 				var currentAngle = transform.localEulerAngles.z;
-				var newangle = Mathf.LerpAngle(currentAngle, angle, newAngleCooldown / 3.0f);
+				var newangle = Mathf.LerpAngle(currentAngle, angle, Time.deltaTime);
 				var xcomponent = Mathf.Cos(newangle * Mathf.PI / 180);
 				var ycomponent = Mathf.Sin(newangle * Mathf.PI / 180);
 				var forcedir = new Vector3(xcomponent, ycomponent, 0.0f);

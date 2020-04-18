@@ -41,8 +41,8 @@ public class Grunt : MonoBehaviour
 				}
 				var currentAngle = transform.localEulerAngles.z;
 				var newangle = Mathf.LerpAngle(currentAngle, angle, Time.deltaTime);
-				var xcomponent = Mathf.Cos(newangle * Mathf.PI / 180);
-				var ycomponent = Mathf.Sin(newangle * Mathf.PI / 180);
+				var xcomponent = Mathf.Cos(newangle * Mathf.Deg2Rad);
+				var ycomponent = Mathf.Sin(newangle * Mathf.Deg2Rad);
 				var forcedir = new Vector3(xcomponent, ycomponent, 0.0f);
 				transform.rotation = Quaternion.AngleAxis(newangle, Vector3.forward);
 				//body.AddForce(transform.forward * 10.0f); // EEH no bueno

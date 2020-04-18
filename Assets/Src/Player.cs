@@ -24,13 +24,11 @@ public class Player : MonoBehaviour
 		body.AddForce(5 * new Vector2(moveHorizontal, moveVertical));
 		body.velocity = body.velocity * 0.9f;
 
-		var upAxis = new Vector3(0, 0, -1);
 		var mouseScreenPosition = Input.mousePosition;
 		mouseScreenPosition.z = transform.position.z;
 		var mouseWorldSpace = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
-		transform.LookAt(mouseWorldSpace, upAxis);
-		transform.eulerAngles = new Vector3(0, 0, -transform.eulerAngles.z);
-		transform.rotation *= Quaternion.Euler(new Vector3(0, 0, 180f));
+		var angle = AngleBetweenTwoPoints(mouseWorldSpace, transform.position);
+		transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
 		if (Input.GetButton("Fire1")) {
 			weapon.Fire(Time.deltaTime);

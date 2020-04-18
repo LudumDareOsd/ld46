@@ -22,7 +22,7 @@ public class Weapon : MonoBehaviour
 		if (fireTime <= 0f) {
 			var bulletInstance = Instantiate(bullet, gameObject.transform.position, gameObject.transform.rotation);
 			var bulletBody = bulletInstance.GetComponent<Rigidbody2D>();
-			bulletBody.velocity = parentBody.transform.up * 5f;
+			bulletBody.velocity = bulletBody.transform.right * 5f;
 
 			fireTime = cooldown;
 		}

@@ -37,7 +37,6 @@ public class GameController : MonoBehaviour
 			case GameStatus.Wave:
 				break;
 			case GameStatus.Upgrade:
-				hudController.showUpgradeScreen(favor, Player.PlayerWeaponLevel, Walls[0].WallDefenseLevel);
 				break;
 			default:
 				break;
@@ -111,7 +110,7 @@ public class GameController : MonoBehaviour
 	public void WaveFinished()
 	{
 		favor++;
-		status = GameStatus.Upgrade; // Do the upgrade stuffz
+		hudController.showUpgradeScreen(favor, Player.PlayerWeaponLevel, Walls[0].WallDefenseLevel);
 		Invoke("BeginNextWave", 5f);
 	}
 

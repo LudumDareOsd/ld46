@@ -9,7 +9,7 @@ public class Pope : EnemyBase
 	private PopeState state;
 	private float attackCooldown = 0f;
 	private Wall wall;
-
+	public override int scoreWorth => 100;
 	public new void Start()
 	{
 		base.Start();

@@ -7,7 +7,6 @@ public class Grunt : EnemyBase
 	private GruntState state;
 	private float attackCooldown = 0f;
 	private Wall wall;
-
 	public new void Start()
 	{
 		base.Start();

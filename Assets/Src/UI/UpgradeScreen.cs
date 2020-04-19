@@ -8,16 +8,38 @@ using UnityEngine.UI;
 public class UpgradeScreen : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Text favorLeftText;
-    private int favorLeft = 0;
-    private int WeaponLevel = 0;
-    private int WallDefenseLevel = 0;
+    public Text WeaponLevelText;
+    public Text WeaponUpgradeCostText;
+    public Text WallLevelText;
+    public Text WallUpgradeCostText;
+    public Text WallRestoreCostText;
     public Texture2D cursor;
     // Start is called before the first frame update
     void Start()
     {
         if (favorLeftText != null)
         {
-            favorLeftText.text = "Favor left: " + favorLeft;
+            favorLeftText.text = "Favor left: 0";
+        }
+        if (WeaponLevelText != null)
+        {
+            WeaponLevelText.text = "Weapon level: 1";
+        }
+        if (WeaponUpgradeCostText != null)
+        {
+            WeaponUpgradeCostText.text = "Cost: 1";
+        }
+        if (WallLevelText != null)
+        {
+            WallLevelText.text = "Wall level: 1";
+        }
+        if (WallUpgradeCostText != null)
+        {
+            WallUpgradeCostText.text = "Cost: 1";
+        }
+        if (WallRestoreCostText != null)
+        {
+            WallRestoreCostText.text = "Cost: 1";
         }
         if (gameObject != null || !gameObject.activeSelf)
         {
@@ -32,15 +54,36 @@ public class UpgradeScreen : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void updateFavorLeft(int newFavorleft)
     {
-        favorLeft = newFavorleft;
-        favorLeftText.text = "Favor left: " + favorLeft;
+        favorLeftText.text = "Favor left: " + newFavorleft;
     }
-
-    public void ShowUpgradeScreen(int favor, int playerweaponlevel, int walldefenselevel)
+    public void updatePlayerWeaponLevel(int weaponlevel)
+    {
+        WeaponLevelText.text = "Weapon level: " + weaponlevel;
+    }
+    public void updateWallDefenseLevel(int walldefenselevel)
+    {
+        WallLevelText.text = "Wall level: " + walldefenselevel;
+    }
+    public void updateWallUpgradeCost(int wallupgradecost)
+    {
+        WallUpgradeCostText.text = "Cost: " + wallupgradecost;
+    }
+    public void updateWeaponUpgradeCost(int weaponupgradecost)
+    {
+        WeaponUpgradeCostText.text = "Cost: " + weaponupgradecost;
+    }
+    public void updateWallRestoreCost(int wallrestorecost)
+    {
+        WallRestoreCostText.text = "Cost: " + wallrestorecost;
+    }
+    public void ShowUpgradeScreen(int favor, int playerweaponlevel, int walldefenselevel, int weaponupgradecost, int wallupgradecost, int wallrestorecost)
     {
         updateFavorLeft(favor);
-        WeaponLevel = playerweaponlevel;
-        WallDefenseLevel = walldefenselevel;
+        updatePlayerWeaponLevel(playerweaponlevel);
+        updateWallDefenseLevel(walldefenselevel);
+        updateWeaponUpgradeCost(weaponupgradecost);
+        updateWallUpgradeCost(wallupgradecost);
+        updateWallRestoreCost(wallrestorecost);
         gameObject.SetActive(true);
     }
     public void CloseUpgradeScreen()

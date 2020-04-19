@@ -42,13 +42,33 @@ public class HudController : MonoBehaviour
         }
     }
 
-    public void showUpgradeScreen(int favor, int playerweaponlevel, int walldefenselevel)
+    public void showUpgradeScreen(int favor, int playerweaponlevel, int walldefenselevel, int weaponupgradecost, int wallupgradecost, int wallrestorecost)
     {
-        UpgradeScreen.ShowUpgradeScreen(favor, playerweaponlevel, walldefenselevel);
+        UpgradeScreen.ShowUpgradeScreen(favor, playerweaponlevel, walldefenselevel, weaponupgradecost, wallupgradecost, wallrestorecost);
     }
     public void UpdateFavorLeft(int favor)
     {
         UpgradeScreen.updateFavorLeft(favor);
+    }
+    public void updatePlayerWeaponLevel(int weaponlevel)
+    {
+        UpgradeScreen.updatePlayerWeaponLevel(weaponlevel);
+    }
+    public void updateWallDefenseLevel(int walldefenselevel)
+    {
+        UpgradeScreen.updateWallDefenseLevel(walldefenselevel);
+    }
+    public void updateWallUpgradeCost(int wallupgradecost)
+    {
+        UpgradeScreen.updateWallUpgradeCost(wallupgradecost);
+    }
+    public void updateWeaponUpgradeCost(int weaponupgradecost)
+    {
+        UpgradeScreen.updateWeaponUpgradeCost(weaponupgradecost);
+    }
+    public void updateWallRestoreCost(int wallrestorecost)
+    {
+        UpgradeScreen.updateWallRestoreCost(wallrestorecost);
     }
     public void CloseUpgradeScreen()
     {

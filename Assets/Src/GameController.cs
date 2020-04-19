@@ -12,6 +12,9 @@ public class GameController : MonoBehaviour
 	private GameStatus status = GameStatus.Start;
 	private EnemyController enemyController;
 	private HudController hudController;
+	private int WeaponUpgradeCost { get => Player.PlayerWeaponLevel + 1; }
+	private int WallUpgradeCost { get => Walls[0].WallDefenseLevel; }
+	private int WallRestoreCost { get => 1; }
 
 	void Start()
     {
@@ -49,8 +52,9 @@ public class GameController : MonoBehaviour
 		{
 			favor -= Player.PlayerWeaponLevel + 1;
 			Player.UpgradeWeapon();
-			status = GameStatus.Start;
 			hudController.UpdateFavorLeft(favor);
+			hudController.updateWeaponUpgradeCost(WeaponUpgradeCost);
+			hudController.updatePlayerWeaponLevel(Player.PlayerWeaponLevel);
 			if (favor == 0)
 			{
 				hudController.CloseUpgradeScreen();
@@ -66,8 +70,9 @@ public class GameController : MonoBehaviour
 			{
 				wall.increaseDefenseLevel();
 			}
-			status = GameStatus.Start;
 			hudController.UpdateFavorLeft(favor);
+			hudController.updateWallDefenseLevel(Walls[0].WallDefenseLevel);
+			hudController.updateWallUpgradeCost(WallUpgradeCost);
 			if (favor == 0)
 			{
 				hudController.CloseUpgradeScreen();
@@ -83,8 +88,8 @@ public class GameController : MonoBehaviour
 			{
 				wall.restoreAllHP();
 			}
-			status = GameStatus.Start;
 			hudController.UpdateFavorLeft(favor);
+			hudController.updateWallRestoreCost(WallRestoreCost);
 			if (favor == 0)
 			{
 				hudController.CloseUpgradeScreen();
@@ -93,7 +98,6 @@ public class GameController : MonoBehaviour
 	}
 	public void CloseUpgradeScreen(object sender, EventArgs e)
 	{
-		status = GameStatus.Wave;
 		hudController.CloseUpgradeScreen();
 	}
 	public void addToScore(int addAmount)
@@ -110,9 +114,10 @@ public class GameController : MonoBehaviour
 	public void WaveFinished()
 	{
 		favor++;
-		hudController.showUpgradeScreen(favor, Player.PlayerWeaponLevel, Walls[0].WallDefenseLevel);
+		hudController.showUpgradeScreen(favor, Player.PlayerWeaponLevel, Walls[0].WallDefenseLevel, WeaponUpgradeCost, WallUpgradeCost, WallRestoreCost);
 		Invoke("BeginNextWave", 5f);
 	}
+	
 
 	internal enum GameStatus
 	{

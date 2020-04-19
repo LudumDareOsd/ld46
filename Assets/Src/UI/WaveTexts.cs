@@ -25,9 +25,9 @@ public class WaveTexts : MonoBehaviour
     public void WaveChange(int newWave)
     {
         wave = newWave;
+        waveChangeText.text = wavetext.text = "Wave " + wave;
         FadeInText(1, waveChangeText);
         Invoke("FadeOutTextWaveChangeText", 1);
-        waveChangeText.text = wavetext.text = "Wave " + wave;
     }
     public void FadeOutTextWaveChangeText()
     {

@@ -35,7 +35,7 @@ public class GameController : MonoBehaviour
 		hudController.Upgrade2_Chosen += UpgradeWalls;
 		hudController.Upgrade3_Chosen += RestoreWalls;
 		hudController.SummonTheUncleanOne_Chosen += SummonTheUncleanOne;
-		hudController.CloseUpgradeScreen_Chosen += CloseUpgradeScreen;
+		hudController.CloseUpgradeScreen_Chosen += onCloseUpgradeScreen;
 		hudController.SetWave(wave);
 		hudController.SetScore(score);
 		audioController.PlayLooping(bgm, 0.2f);
@@ -70,7 +70,7 @@ public class GameController : MonoBehaviour
 			hudController.updatePlayerWeaponLevel(Player.PlayerWeaponLevel + 1);
 			if (favor == 0)
 			{
-				hudController.CloseUpgradeScreen();
+				CloseUpgradeScreen();
 			}
 		}
 	}
@@ -89,7 +89,7 @@ public class GameController : MonoBehaviour
 			hudController.updateWallUpgradeCost(WallUpgradeCost);
 			if (favor == 0)
 			{
-				hudController.CloseUpgradeScreen();
+				CloseUpgradeScreen();
 			}
 		}
 	}
@@ -107,7 +107,7 @@ public class GameController : MonoBehaviour
 			hudController.updateWallRestoreCost(WallRestoreCost);
 			if (favor == 0)
 			{
-				hudController.CloseUpgradeScreen();
+				CloseUpgradeScreen();
 			}
 		}
 	}
@@ -123,11 +123,15 @@ public class GameController : MonoBehaviour
 		}
 	}
 
-	public void CloseUpgradeScreen(object sender, EventArgs e)
+	public void onCloseUpgradeScreen(object sender, EventArgs e)
+	{
+		CloseUpgradeScreen();
+	}
+	public void CloseUpgradeScreen()
 	{
 		hudController.CloseUpgradeScreen();
+		BeginNextWave();
 	}
-
 	public void addToScore(int addAmount)
 	{
 		score += addAmount;
@@ -138,6 +142,7 @@ public class GameController : MonoBehaviour
 	{
 		pauseInput = false;
 		wave++;
+		Player.setCursorToCrosshair();
 		enemyController.StartWave(wave, WaveFinished);
 		hudController.SetWave(wave);
 	}
@@ -147,7 +152,6 @@ public class GameController : MonoBehaviour
 		pauseInput = true;
 		favor++;
 		hudController.showUpgradeScreen(favor, Player.PlayerWeaponLevel + 1, Walls[0].WallDefenseLevel, WeaponUpgradeCost, WallUpgradeCost, WallRestoreCost);
-		Invoke("BeginNextWave", 5f);
 	}
 
 	public void Die()

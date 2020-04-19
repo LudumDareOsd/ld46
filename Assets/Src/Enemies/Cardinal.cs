@@ -16,8 +16,9 @@ public class Cardinal : EnemyBase
 		state = CardinalState.Moving;
 	}
 
-	public void Update()
+	public new void Update()
 	{
+		base.Update();
 		switch (state)
 		{
 			case CardinalState.Moving:

@@ -13,9 +13,6 @@ public class Weapon : MonoBehaviour
 	private float fireTime = 0f;
 	private int type = 0;
 
-	private bool machineGunFire = false;
-
-
 	public void Start() {
 		weaponColl = GetComponentInParent<Collider2D>();
 		source = AudioController.instance.createSource().GetComponent<AudioSource>();
@@ -62,7 +59,7 @@ public class Weapon : MonoBehaviour
 
 	private void pistol() {
 		spawnBullet(transform.position, 0);
-		AudioController.instance.PlaySingle(pistolClip, 0.5f);
+		AudioController.instance.PlaySingle(pistolClip, 0.3f);
 
 		fireTime = 0.5f;
 	}
@@ -75,7 +72,7 @@ public class Weapon : MonoBehaviour
 		spawnBullet(transform.position, -2f);
 		spawnBullet(transform.position, -5f);
 
-		AudioController.instance.PlaySingle(shotgunClip, 0.5f);
+		AudioController.instance.PlaySingle(shotgunClip, 0.3f);
 
 		fireTime = 1f;
 	}

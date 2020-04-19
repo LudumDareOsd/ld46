@@ -98,6 +98,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   corpse: {fileID: 7843172012380975370, guid: b2f8d77c861c8ab478f78ae38b9b3b4a, type: 3}
   maxHp: 50
+  takeDamageAudio: {fileID: 8300000, guid: e25231cda3724e642a0b5e141fed26da, type: 3}
+  deathSoundClip: {fileID: 8300000, guid: 760f3bc1c69ea3d4b9878dc6a1686189, type: 3}
   moveForce: 0.32
 --- !u!50 &7681320036754291036
 Rigidbody2D:

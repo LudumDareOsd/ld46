@@ -7,40 +7,23 @@ using UnityEngine.UI;
 
 public class UpgradeScreen : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public Text favorLeftText;
-    public Text WeaponLevelText;
-    public Text WeaponUpgradeCostText;
-    public Text WallLevelText;
-    public Text WallUpgradeCostText;
-    public Text WallRestoreCostText;
+    public Sprite[] FavorSprites;
+    public Image FavorImage;
+    public Sprite[] WeaponUpgradeSprites;
+    private Sprite WeaponUpgradeSprite;
+    private Sprite WeaponUpgradeHoverSprite;
+    public Image WeaponUpgradImage;
+    public Sprite[] WallUpgradeSprites;
+    private Sprite WallUpgradeSprite;
+    private Sprite WallUpgradeHoverSprite;
+    public Image WallUpgradeImage;
+    public Sprite[] WallRestoreSprites;
+    private Sprite WallRestoreSprite;
+    private Sprite WallRestoreHoverSprite;
+    public Image WallRestoreImage;
     public Texture2D cursor;
-    // Start is called before the first frame update
     void Start()
     {
-        if (favorLeftText != null)
-        {
-            favorLeftText.text = "Favor left: 0";
-        }
-        if (WeaponLevelText != null)
-        {
-            WeaponLevelText.text = "Weapon level: 1";
-        }
-        if (WeaponUpgradeCostText != null)
-        {
-            WeaponUpgradeCostText.text = "Cost: 1";
-        }
-        if (WallLevelText != null)
-        {
-            WallLevelText.text = "Wall level: 1";
-        }
-        if (WallUpgradeCostText != null)
-        {
-            WallUpgradeCostText.text = "Cost: 1";
-        }
-        if (WallRestoreCostText != null)
-        {
-            WallRestoreCostText.text = "Cost: 1";
-        }
         if (gameObject != null || !gameObject.activeSelf)
         {
             gameObject.SetActive(false);
@@ -54,27 +37,100 @@ public class UpgradeScreen : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void updateFavorLeft(int newFavorleft)
     {
-        favorLeftText.text = "Favor left: " + newFavorleft;
+        if (newFavorleft >= FavorSprites.Length)
+        {
+            FavorImage.sprite = FavorSprites[FavorSprites.Length - 1];
+        } 
+        else if (newFavorleft > 0)
+        {
+            FavorImage.sprite = FavorSprites[newFavorleft - 1];
+        } 
+        else
+        {
+            FavorImage.sprite = FavorSprites[0];
+        }
     }
     public void updatePlayerWeaponLevel(int weaponlevel)
     {
-        WeaponLevelText.text = "Weapon level: " + weaponlevel;
+        switch (weaponlevel)
+        {
+            case 1:
+                WeaponUpgradImage.sprite = WeaponUpgradeSprite = WeaponUpgradeSprites[0];
+                WeaponUpgradeHoverSprite = WeaponUpgradeSprites[1];
+                break;
+            case 2:
+                WeaponUpgradImage.sprite = WeaponUpgradeSprite = WeaponUpgradeSprites[2];
+                WeaponUpgradeHoverSprite = WeaponUpgradeSprites[3];
+                break;
+            case 3:
+                WeaponUpgradImage.sprite = WeaponUpgradeHoverSprite = WeaponUpgradeSprite = WeaponUpgradeSprites[4];
+                break;
+            default:
+                WeaponUpgradImage.sprite = WeaponUpgradeSprites[0];
+                break;
+        }
+
     }
     public void updateWallDefenseLevel(int walldefenselevel)
     {
-        WallLevelText.text = "Wall level: " + walldefenselevel;
+        switch (walldefenselevel)
+        {
+            case 1:
+                WallUpgradeImage.sprite = WallUpgradeSprite = WallUpgradeSprites[0];
+                WallUpgradeHoverSprite = WallUpgradeSprites[1];
+                break;
+            case 2:
+                WallUpgradeImage.sprite = WallUpgradeSprite = WallUpgradeSprites[2];
+                WallUpgradeHoverSprite = WallUpgradeSprites[3];
+                break;
+            case 3:
+                WallUpgradeImage.sprite = WallUpgradeHoverSprite = WallUpgradeSprite = WallUpgradeSprites[4];
+                break;
+            default:
+                WallUpgradeImage.sprite = WallUpgradeSprite = WallUpgradeSprites[0];
+                WallUpgradeHoverSprite = WallUpgradeSprites[1];
+                break;
+        }
     }
     public void updateWallUpgradeCost(int wallupgradecost)
     {
-        WallUpgradeCostText.text = "Cost: " + wallupgradecost;
     }
     public void updateWeaponUpgradeCost(int weaponupgradecost)
     {
-        WeaponUpgradeCostText.text = "Cost: " + weaponupgradecost;
     }
     public void updateWallRestoreCost(int wallrestorecost)
     {
-        WallRestoreCostText.text = "Cost: " + wallrestorecost;
+        switch (wallrestorecost)
+        {
+            default:
+                WallRestoreImage.sprite = WallRestoreSprite = WallRestoreSprites[0];
+                WallRestoreHoverSprite = WallRestoreSprites[1];
+                break;
+        }
+    }
+    public void onWeaponUpgradePointerEnter()
+    {
+        WeaponUpgradImage.sprite = WeaponUpgradeHoverSprite;
+    }
+    public void onWeaponUpgradePointerExit()
+    {
+        WeaponUpgradImage.sprite = WeaponUpgradeSprite;
+    }
+    public void onWallUpgradePointerEnter()
+    {
+        WallUpgradeImage.sprite = WallUpgradeHoverSprite;
+    }
+    public void onWallUpgradePointerExit()
+    {
+        WallUpgradeImage.sprite = WallUpgradeSprite;
+    }
+    public void onWallRestorePointerEnter()
+    {
+        WallRestoreImage.sprite = WallRestoreHoverSprite;
+    }
+    public void onWallRestorePointerExit()
+    {
+        WallRestoreImage.sprite = WallRestoreSprite;
     }
     public void ShowUpgradeScreen(int favor, int playerweaponlevel, int walldefenselevel, int weaponupgradecost, int wallupgradecost, int wallrestorecost)
     {

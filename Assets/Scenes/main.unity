@@ -2192,8 +2192,6 @@ MonoBehaviour:
   - {fileID: 1645026585}
   - {fileID: 303644144}
   - {fileID: 223052644}
-  - {fileID: 680359002}
-  - {fileID: 1146112745}
   - {fileID: 1205433400}
   - {fileID: 373225093}
   winWaveSound: {fileID: 8300000, guid: 48a64983771731f4c92ee9c7be05625a, type: 3}

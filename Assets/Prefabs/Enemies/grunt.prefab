@@ -135,4 +135,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   corpse: {fileID: 7843172012380975370, guid: 5d3eb1beba46e7e41ae2858c1563e9b4, type: 3}
   maxHp: 1
+  takeDamageAudio: {fileID: 0}
+  deathSoundClip: {fileID: 8300000, guid: 760f3bc1c69ea3d4b9878dc6a1686189, type: 3}
   moveForce: 0.5

@@ -4,6 +4,8 @@ public class EnemyBase : MonoBehaviour, Enemy
 {
 	public GameObject corpse;
 	public float maxHp = 1f;
+	public AudioClip takeDamageAudio;
+	public AudioClip deathSoundClip;
 	protected EnemyController enemyController;
 	protected GameController gameController;
 	protected float hp;
@@ -13,6 +15,8 @@ public class EnemyBase : MonoBehaviour, Enemy
 	protected bool dead = false;
 	public virtual int scoreWorth { get => 10; }
 
+	private AudioSource currentSource;
+
 	public void Start() {
 		hp = maxHp;
 		enemyController = FindObjectOfType<EnemyController>();
@@ -21,6 +25,13 @@ public class EnemyBase : MonoBehaviour, Enemy
 		var norm = transform.position / -transform.position.magnitude;
 		angle = Mathf.Atan2(norm.y, norm.x) * Mathf.Rad2Deg;
 		transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+	}
+
+	public void Update()
+	{
+		if (currentSource != null && !currentSource.isPlaying) {
+			currentSource = null;
+		}
 	}
 
 	protected void setAngle() {
@@ -41,8 +52,13 @@ public class EnemyBase : MonoBehaviour, Enemy
 	{
 		hp -= damage;
 
+		if (currentSource == null) {
+			currentSource = AudioController.instance.PlaySingle(takeDamageAudio, 0.5f);
+		}
+
 		if (hp <= 0 && !dead) {
 			dead = true; // Stop this triggering multiple times (shotgun or w/e)
+			AudioController.instance.PlaySingle(deathSoundClip, 0.5f);
 			enemyController.EnemyDied();
 			if (corpse) {
 				Instantiate(corpse, transform.position, transform.rotation);

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -119,7 +120,14 @@ public class GameController : MonoBehaviour
 		hudController.showUpgradeScreen(favor, Player.PlayerWeaponLevel + 1, Walls[0].WallDefenseLevel, WeaponUpgradeCost, WallUpgradeCost, WallRestoreCost);
 		Invoke("BeginNextWave", 5f);
 	}
-	
+
+	private IEnumerator WhenWaveFinished() {
+		yield return new WaitForSeconds(3);
+
+		
+	}
+
+
 
 	internal enum GameStatus
 	{

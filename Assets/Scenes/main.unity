@@ -2242,6 +2242,7 @@ MonoBehaviour:
   - {fileID: 1146112745}
   - {fileID: 1205433400}
   - {fileID: 373225093}
+  winWaveSound: {fileID: 8300000, guid: 48a64983771731f4c92ee9c7be05625a, type: 3}
   globalLight: {fileID: 372416577}
   altarLight: {fileID: 812076462}
 --- !u!1 &680359002

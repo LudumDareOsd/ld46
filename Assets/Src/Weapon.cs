@@ -18,7 +18,7 @@ public class Weapon : MonoBehaviour
 		source = AudioController.instance.createSource().GetComponent<AudioSource>();
 
 		source.clip = machineGunClip;
-		source.volume = 0.5f;
+		source.volume = 0.7f;
 		source.spatialBlend = 0;
 		source.dopplerLevel = 0;
 		source.spread = 0;

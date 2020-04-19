@@ -7,6 +7,7 @@ public class EnemyController : MonoBehaviour
 	public GameObject enemyContainer;
 	public GameObject gruntPrefab, suiciderPrefab, cardinalPrefab, popePrefab;
 	public GameObject[] spawnPoints;
+	public AudioClip winWaveSound;
 
 	public GameObject globalLight, altarLight;
 
@@ -60,6 +61,9 @@ public class EnemyController : MonoBehaviour
 			spawnTimer += .1f;
 			if (waveTimer > totalWaveTime && aliveMobs <= 0)
 			{
+				AudioController.instance.PlaySingle(winWaveSound, 0.5f);
+
+				yield return new WaitForSeconds(4f);
 				globalLight.GetComponent<Light2D>().intensity = 1.0f;
 				altarLight.GetComponent<Light2D>().intensity = 0.0f;
 				callback();

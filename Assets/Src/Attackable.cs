@@ -6,13 +6,16 @@ public class Attackable : MonoBehaviour
 {
 	public bool dead = false;
 	public Sprite sprite;
+	public int WallDefenseLevel { get => (int)defenseLevel; }
+
 	protected float maxHp = 20;
 	protected float hp = 0;
 	protected SpriteRenderer spriteRenderer;
 	protected Collider2D col;
 	protected HpBar hpBar;
 	protected float defenseLevel = 1f;
-	public int WallDefenseLevel { get => (int)defenseLevel; }
+
+	private Sprite original;
 
 	public void Start()
 	{
@@ -21,6 +24,7 @@ public class Attackable : MonoBehaviour
 		col = gameObject.GetComponent<Collider2D>();
 		hp = maxHp;
 		hpBar.SetMaxHp(maxHp);
+		original = spriteRenderer.sprite;
 	}
 
 	public virtual void takeDamage(float damage)
@@ -37,10 +41,19 @@ public class Attackable : MonoBehaviour
 		}
 	}
 
+	protected void restore() {
+		dead = false;
+		spriteRenderer.sprite = original;
+		spriteRenderer.sortingLayerName = "ForeGround";
+		col.enabled = true;
+		hpBar.gameObject.SetActive(true);
+	}
+
 	private void die()
 	{
 		dead = true;
 		spriteRenderer.sprite = sprite;
+		spriteRenderer.sortingLayerName = "Background";
 		col.enabled = false;
 		hpBar.gameObject.SetActive(false);
 	}

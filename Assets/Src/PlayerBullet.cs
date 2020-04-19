@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour
 {
+	public float damage = 1f;
+
 	void Start()
 	{
 		Destroy(gameObject, 2);
@@ -16,7 +18,7 @@ public class PlayerBullet : MonoBehaviour
 			var enemy = collision.gameObject.GetComponent<Enemy>();
 
 			if (enemy != null) {
-				enemy.takeDamage(1f);
+				enemy.takeDamage(damage);
 			}
 			Destroy(gameObject);
 		}

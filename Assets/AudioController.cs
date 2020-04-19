@@ -26,6 +26,21 @@ public class AudioController : MonoBehaviour
 		return audioSrc;
 	}
 
+	public AudioSource PlayLooping(AudioClip clip, float volume)
+	{
+		var audioSrc = GetSource().GetComponent<AudioSource>();
+		audioSrc.clip = clip;
+		audioSrc.volume = volume;
+		audioSrc.spatialBlend = 0;
+		audioSrc.dopplerLevel = 0;
+		audioSrc.spread = 0;
+		audioSrc.loop = true;
+		audioSrc.pitch = 1f;
+		audioSrc.Play();
+
+		return audioSrc;
+	}
+
 	public AudioSource PlaySingleLow(AudioClip clip, float volume)
 	{
 

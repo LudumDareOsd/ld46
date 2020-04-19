@@ -53,12 +53,12 @@ public class EnemyBase : MonoBehaviour, Enemy
 		hp -= damage;
 
 		if (currentSource == null) {
-			currentSource = AudioController.instance.PlaySingle(takeDamageAudio, 0.5f);
+			currentSource = AudioController.instance.PlaySingle(takeDamageAudio, 0.2f);
 		}
 
 		if (hp <= 0 && !dead) {
 			dead = true; // Stop this triggering multiple times (shotgun or w/e)
-			AudioController.instance.PlaySingle(deathSoundClip, 0.5f);
+			AudioController.instance.PlaySingle(deathSoundClip, 0.1f);
 			enemyController.EnemyDied();
 			if (corpse) {
 				Instantiate(corpse, transform.position, transform.rotation);

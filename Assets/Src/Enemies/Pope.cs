@@ -17,8 +17,9 @@ public class Pope : EnemyBase
 		state = PopeState.Moving;
 	}
 
-	public void Update()
+	public new void Update()
 	{
+		base.Update();
 		switch (state)
 		{
 			case PopeState.Moving:

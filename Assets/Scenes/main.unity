@@ -704,6 +704,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursor: {fileID: 2800000, guid: 386a7da68eb532e4795486eb2f519bff, type: 3}
+  gameController: {fileID: 1897542267}
 --- !u!1 &130926237
 GameObject:
   m_ObjectHideFlags: 0
@@ -4145,6 +4146,7 @@ MonoBehaviour:
   globalLight: {fileID: 372416577}
   altarLight: {fileID: 812076462}
   bgm: {fileID: 8300000, guid: 0109940f00ceb834f8645099af76fd36, type: 3}
+  pauseInput: 0
 --- !u!1 &1944515229
 GameObject:
   m_ObjectHideFlags: 0

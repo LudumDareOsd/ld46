@@ -32,6 +32,7 @@ public class GameController : MonoBehaviour
 		hudController.Upgrade1_Chosen += UpgradeWeapon;
 		hudController.Upgrade2_Chosen += UpgradeWalls;
 		hudController.Upgrade3_Chosen += RestoreWalls;
+		hudController.SummonTheUncleanOne_Chosen += SummonTheUncleanOne;
 		hudController.CloseUpgradeScreen_Chosen += CloseUpgradeScreen;
 		hudController.SetWave(wave);
 		hudController.SetScore(score);
@@ -106,6 +107,17 @@ public class GameController : MonoBehaviour
 			{
 				hudController.CloseUpgradeScreen();
 			}
+		}
+	}
+	public void SummonTheUncleanOne(object sender, EventArgs e)
+	{
+		if (favor >= 5)
+		{
+			Debug.Log("Congranulations!!!");
+		}
+		else
+		{
+			Debug.Log("Moaaar!!!");
 		}
 	}
 

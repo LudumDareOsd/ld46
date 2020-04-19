@@ -56,7 +56,7 @@ public class GameController : MonoBehaviour
 			Player.UpgradeWeapon();
 			hudController.UpdateFavorLeft(favor);
 			hudController.updateWeaponUpgradeCost(WeaponUpgradeCost);
-			hudController.updatePlayerWeaponLevel(Player.PlayerWeaponLevel);
+			hudController.updatePlayerWeaponLevel(Player.PlayerWeaponLevel + 1);
 			if (favor == 0)
 			{
 				hudController.CloseUpgradeScreen();
@@ -116,7 +116,7 @@ public class GameController : MonoBehaviour
 	public void WaveFinished()
 	{
 		favor++;
-		hudController.showUpgradeScreen(favor, Player.PlayerWeaponLevel, Walls[0].WallDefenseLevel, WeaponUpgradeCost, WallUpgradeCost, WallRestoreCost);
+		hudController.showUpgradeScreen(favor, Player.PlayerWeaponLevel + 1, Walls[0].WallDefenseLevel, WeaponUpgradeCost, WallUpgradeCost, WallRestoreCost);
 		Invoke("BeginNextWave", 5f);
 	}
 	

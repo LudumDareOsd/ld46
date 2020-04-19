@@ -132,6 +132,14 @@ public class UpgradeScreen : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         WallRestoreImage.sprite = WallRestoreSprite;
     }
+    public void onPentagramPointerEnter()
+    {
+        FavorImage.color = new Color(FavorImage.color.r, FavorImage.color.g, FavorImage.color.b, 1f);
+    }
+    public void onPentagramPointerExit()
+    {
+        FavorImage.color = new Color(FavorImage.color.r, FavorImage.color.g, FavorImage.color.b, 0.5f);
+    }
     public void ShowUpgradeScreen(int favor, int playerweaponlevel, int walldefenselevel, int weaponupgradecost, int wallupgradecost, int wallrestorecost)
     {
         updateFavorLeft(favor);

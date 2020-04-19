@@ -4,6 +4,7 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class EnemyController : MonoBehaviour
 {
+	public GameController gameController;
 	public GameObject enemyContainer;
 	public GameObject gruntPrefab, suiciderPrefab, cardinalPrefab, popePrefab;
 	public GameObject[] spawnPoints;
@@ -62,6 +63,7 @@ public class EnemyController : MonoBehaviour
 			if (waveTimer > totalWaveTime && aliveMobs <= 0)
 			{
 				AudioController.instance.PlaySingle(winWaveSound, 0.5f);
+				gameController.pauseInput = true;
 
 				yield return new WaitForSeconds(4f);
 				globalLight.GetComponent<Light2D>().intensity = 1.0f;

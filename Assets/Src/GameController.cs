@@ -4,6 +4,8 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
 	public int maxWave = 10;
+	public GameObject globalLight, altarLight;
+
 	private int score = 0; 
 	private int wave = 1;
 	private int favor = 0;

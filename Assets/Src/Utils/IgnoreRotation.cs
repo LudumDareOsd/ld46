@@ -8,7 +8,6 @@ public class IgnoreRotation : MonoBehaviour
 	void Awake()
 	{
 		rotation = transform.rotation;
-		//position = transform.localPosition;
 	}
 
 	void LateUpdate()

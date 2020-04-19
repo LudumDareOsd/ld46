@@ -7,7 +7,7 @@ public class AudioController : MonoBehaviour
 	private List<GameObject> sources = new List<GameObject>();
 	public static AudioController instance;
 
-	public void Start()
+	public void Awake()
 	{
 		instance = this;
 	}

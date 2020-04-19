@@ -97,6 +97,11 @@ public class GameController : MonoBehaviour
 		status = GameStatus.Wave;
 		hudController.CloseUpgradeScreen();
 	}
+	public void addToScore(int addAmount)
+	{
+		score += addAmount;
+		hudController.SetScore(score);
+	}
 	public void BeginNextWave()
 	{
 		wave++;

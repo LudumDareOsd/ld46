@@ -5,15 +5,18 @@ public class EnemyBase : MonoBehaviour, Enemy
 	public GameObject corpse;
 	public float maxHp = 1f;
 	protected EnemyController enemyController;
+	protected GameController gameController;
 	protected float hp;
 	protected float newAngleCooldown = 3.0f;
 	protected float angle;
 	protected Rigidbody2D body;
 	protected bool dead = false;
+	public virtual int scoreWorth { get => 10; }
 
 	public void Start() {
 		hp = maxHp;
 		enemyController = FindObjectOfType<EnemyController>();
+		gameController = FindObjectOfType<GameController>();
 		body = GetComponent<Rigidbody2D>();
 		var norm = transform.position / -transform.position.magnitude;
 		angle = Mathf.Atan2(norm.y, norm.x) * Mathf.Rad2Deg;
@@ -45,6 +48,7 @@ public class EnemyBase : MonoBehaviour, Enemy
 				Instantiate(corpse, transform.position, transform.rotation);
 			}
 			Destroy(gameObject);
+			gameController.addToScore(scoreWorth);
 		}
 	}
 }

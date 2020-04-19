@@ -14,6 +14,7 @@ public class Wall : Attackable
 
 	public void restoreAllHP()
 	{
+		restore();
 		hp = maxHp;
 		hpBar.SetHp(hp);
 	}

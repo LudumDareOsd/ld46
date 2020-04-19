@@ -871,7 +871,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 187771992}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1186,6 +1186,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1595007027}
+  - {fileID: 130926240}
   m_Father: {fileID: 361283998}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2184,6 +2185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c08a6f2b541e8d48873508a09962a2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameController: {fileID: 1897542267}
   enemyContainer: {fileID: 868841086}
   gruntPrefab: {fileID: 1103689392219111141, guid: 525dc3d648462724781e76bee98eeab5,
     type: 3}

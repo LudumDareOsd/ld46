@@ -20,17 +20,19 @@ public class Player : MonoBehaviour
 
 	void Update()
     {
-		var moveHorizontal = Input.GetAxis("Horizontal");
-		var moveVertical = Input.GetAxis("Vertical");
-
-		body.AddForce(5 * new Vector2(moveHorizontal, moveVertical));
-		body.velocity = body.velocity * 0.9f;
-
 		var mouseScreenPosition = Input.mousePosition;
 		mouseScreenPosition.z = transform.position.z;
 		var mouseWorldSpace = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
 		var angle = AngleBetweenTwoPoints(mouseWorldSpace, transform.position);
 		transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+		if (!gameController.pauseInput) {
+			var moveHorizontal = Input.GetAxis("Horizontal");
+			var moveVertical = Input.GetAxis("Vertical");
+
+			body.AddForce(5 * new Vector2(moveHorizontal, moveVertical));
+			body.velocity = body.velocity * 0.9f;
+		}
 
 		if (Input.GetButton("Fire1") && !gameController.pauseInput)
 		{

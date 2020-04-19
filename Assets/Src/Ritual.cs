@@ -34,6 +34,8 @@ public class Ritual : MonoBehaviour
 	{
 		float partDone = enemyController.WaveProgress();
 
+		Debug.Log(partDone);
+
 		if (partDone < parts[1])
 		{
 		} else if (partDone > parts[1] && partDone < parts[2])

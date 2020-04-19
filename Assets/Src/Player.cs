@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 	public Texture2D cursor;
 	private Rigidbody2D body;
 	private Weapon weapon;
+	private float stopfireCount = 0;
 
 	public void Start()
 	{
@@ -30,8 +31,17 @@ public class Player : MonoBehaviour
 		var angle = AngleBetweenTwoPoints(mouseWorldSpace, transform.position);
 		transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-		if (Input.GetButton("Fire1")) {
+		if (Input.GetButton("Fire1"))
+		{
 			weapon.Fire(Time.deltaTime);
+			stopfireCount = 0;
+		}
+		else {
+			stopfireCount += Time.deltaTime;
+
+			if (stopfireCount >= 0.1f) {
+				weapon.StopFire();
+			}
 		}
 	}
 	public void UpgradeWeapon()

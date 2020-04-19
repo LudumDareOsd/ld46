@@ -22,7 +22,7 @@ public class WaveTexts : MonoBehaviour
     {
         
     }
-    public void waveChange(int newWave)
+    public void WaveChange(int newWave)
     {
         wave = newWave;
         FadeInText(1, waveChangeText);

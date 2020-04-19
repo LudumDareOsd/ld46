@@ -6,7 +6,7 @@ public class Weapon : MonoBehaviour
 	public GameObject bullet;
 	private Collider2D weaponColl;
 	private float fireTime = 0f;
-	private int type = 1;
+	private int type = 0;
 
 
 	public void Start() {
@@ -66,4 +66,10 @@ public class Weapon : MonoBehaviour
 		bulletBody.velocity = (bulletInstance.transform.right) * 3f;
 
 	}
+
+	public void UpgradeWeapon()
+	{
+		type++;
+	}
+	public int WeaponLevel { get => type; }
 }

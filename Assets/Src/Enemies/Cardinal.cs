@@ -9,7 +9,7 @@ public class Cardinal : EnemyBase
 	private CardinalState state;
 	private float attackCooldown = 0f;
 	private Wall wall;
-
+	public override int scoreWorth => 30;
 	public new void Start()
 	{
 		base.Start();

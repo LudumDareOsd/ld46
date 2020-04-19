@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -8,6 +9,8 @@ public class UpgradeScreen : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 {
     public Text favorLeftText;
     private int favorLeft = 0;
+    private int WeaponLevel = 0;
+    private int WallDefenseLevel = 0;
     public Texture2D cursor;
     // Start is called before the first frame update
     void Start()
@@ -33,32 +36,53 @@ public class UpgradeScreen : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         favorLeftText.text = "Favor left: " + favorLeft;
     }
 
-    public void ShowUpgradeScreen()
+    public void ShowUpgradeScreen(int favor, int playerweaponlevel, int walldefenselevel)
     {
+        updateFavorLeft(favor);
+        WeaponLevel = playerweaponlevel;
+        WallDefenseLevel = walldefenselevel;
         gameObject.SetActive(true);
+    }
+    public void CloseUpgradeScreen()
+    {
+        gameObject.SetActive(false);
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
     }
-
-    public void clickUpgrade1()
-    {
-        Debug.Log("Clicked upgrade 1");
-    }
-    public void clickUpgrade2()
-    {
-        Debug.Log("Clicked upgrade 2");
-    }
-
-    public void clickUpgrade3()
-    {
-        Debug.Log("Clicked upgrade 3");
-    }
-
     public void OnPointerExit(PointerEventData eventData)
     {
         var cursorHotspot = new Vector2(cursor.width / 2, cursor.height / 2);
         Cursor.SetCursor(cursor, cursorHotspot, CursorMode.Auto);
     }
+
+    public event EventHandler Upgrade1_Clicked;
+    public void clickUpgrade1()
+    {
+        var upgrade1_clicked_handler = Upgrade1_Clicked;
+        upgrade1_clicked_handler(this, null);
+
+    }
+    public event EventHandler Upgrade2_Clicked;
+    public void clickUpgrade2()
+    {
+        var upgrade2_clicked_handler = Upgrade2_Clicked;
+        upgrade2_clicked_handler(this, null);
+    }
+    public event EventHandler Upgrade3_Clicked;
+    public void clickUpgrade3()
+    {
+        var upgrade3_clicked_handler = Upgrade3_Clicked;
+        upgrade3_clicked_handler(this, null);
+    }
+    public event EventHandler CloseUpgradeScreenClicked;
+    public void ClickCloseUpgradeScreen()
+    {
+        Debug.Log("At least the click is registered");
+        var close_clicked_handler = CloseUpgradeScreenClicked;
+        close_clicked_handler(this, null);
+    }
+
+    
 }

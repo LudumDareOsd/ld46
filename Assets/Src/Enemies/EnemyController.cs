@@ -60,6 +60,8 @@ public class EnemyController : MonoBehaviour
 			spawnTimer += .1f;
 			if (waveTimer > totalWaveTime && aliveMobs <= 0)
 			{
+				globalLight.GetComponent<Light2D>().intensity = 1.0f;
+				altarLight.GetComponent<Light2D>().intensity = 0.0f;
 				callback();
 				yield break;
 			}

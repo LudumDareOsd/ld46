@@ -4,7 +4,7 @@ public class SuicideBomber : EnemyBase
 {
 	public float moveForce = 1.5f;
 	private Wall wall;
-
+	public override int scoreWorth => 20;
 	public new void Start()
 	{
 		base.Start();

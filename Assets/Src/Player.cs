@@ -14,8 +14,8 @@ public class Player : MonoBehaviour
 	{
 		body = GetComponent<Rigidbody2D>();
 		weapon = GetComponentInChildren<Weapon>();
-		var cursorHotspot = new Vector2(cursor.width / 2, cursor.height / 2);
-		Cursor.SetCursor(cursor, cursorHotspot, CursorMode.Auto);
+		gameController = FindObjectOfType<GameController>();
+		setCursorToCrosshair();
 	}
 
 	void Update()
@@ -44,6 +44,11 @@ public class Player : MonoBehaviour
 				weapon.StopFire();
 			}
 		}
+	}
+	public void setCursorToCrosshair()
+	{
+		var cursorHotspot = new Vector2(cursor.width / 2, cursor.height / 2);
+		Cursor.SetCursor(cursor, cursorHotspot, CursorMode.Auto);
 	}
 	public void UpgradeWeapon()
 	{

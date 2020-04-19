@@ -123,7 +123,7 @@ public class GameController : MonoBehaviour
 
 	public void onCloseUpgradeScreen(object sender, EventArgs e)
 	{
-		hudController.CloseUpgradeScreen();
+		CloseUpgradeScreen();
 	}
 	public void CloseUpgradeScreen()
 	{
@@ -140,6 +140,7 @@ public class GameController : MonoBehaviour
 	{
 		pauseInput = false;
 		wave++;
+		Player.setCursorToCrosshair();
 		enemyController.StartWave(wave, WaveFinished);
 		hudController.SetWave(wave);
 	}

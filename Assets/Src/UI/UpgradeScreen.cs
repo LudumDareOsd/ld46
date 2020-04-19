@@ -182,6 +182,13 @@ public class UpgradeScreen : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         var close_clicked_handler = CloseUpgradeScreenClicked;
         close_clicked_handler(this, null);
     }
+    public event EventHandler SummonTheUncleanOne_Clicked;
+    public void SummonTheUncleanOneClicked()
+    {
+        var summon_click_handler = SummonTheUncleanOne_Clicked;
+        summon_click_handler(this, null);
+    }
 
-    
+
+
 }

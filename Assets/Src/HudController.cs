@@ -18,6 +18,7 @@ public class HudController : MonoBehaviour
             UpgradeScreen.Upgrade2_Clicked += Upgrade2Chosen;
             UpgradeScreen.Upgrade3_Clicked += Upgrade3Chosen;
             UpgradeScreen.CloseUpgradeScreenClicked += CloseUpgradeScreenChosen;
+            UpgradeScreen.SummonTheUncleanOne_Clicked += SummonTheUncleanOneChosen;
         }   
     }
 
@@ -96,5 +97,11 @@ public class HudController : MonoBehaviour
     public void CloseUpgradeScreenChosen(object sender, EventArgs e)
     {
         CloseUpgradeScreen_Chosen(this, null);
+    }
+
+    public event EventHandler SummonTheUncleanOne_Chosen;
+    public void SummonTheUncleanOneChosen(object sender, EventArgs e)
+    {
+        SummonTheUncleanOne_Chosen(this, null);
     }
 }

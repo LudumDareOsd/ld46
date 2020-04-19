@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class EnemyController : MonoBehaviour
 {
 	public GameObject enemyContainer;
 	public GameObject gruntPrefab, suiciderPrefab, cardinalPrefab, popePrefab;
 	public GameObject[] spawnPoints;
+
+	public GameObject globalLight, altarLight;
 
 	private float totalWaveTime = 15.0f;
 	private float spawnDelay = 3.0f;
@@ -42,10 +45,17 @@ public class EnemyController : MonoBehaviour
 		return 1.0f - Mathf.Min((float)aliveMobs / (float)totalMobs, 1.0f);
 	}
 
+	public float WaveProgressContinuous()
+	{
+		return Mathf.Min(waveTimer / 30f, 1.0f);
+	}
+
 	private IEnumerator SpawnWave(System.Action callback = null, bool bosswave = false)
 	{
 		while (true)
 		{
+			globalLight.GetComponent<Light2D>().intensity = Mathf.Max(1.0f - WaveProgressContinuous(), 0.3f);
+
 			waveTimer += .1f;
 			spawnTimer += .1f;
 			if (waveTimer > totalWaveTime && aliveMobs <= 0)
@@ -57,8 +67,6 @@ public class EnemyController : MonoBehaviour
 			if (waveTimer <= totalWaveTime && spawnTimer > spawnDelay)
 			{
 				currentMob++;
-
-				Debug.Log(currentMob % totalMobs);
 
 				if (bosswave && currentMob % totalMobs == 0) { // last mob on bosswave is pope?
 					SpawnEnemy(popePrefab);
@@ -78,5 +86,6 @@ public class EnemyController : MonoBehaviour
 	public void EnemyDied()
 	{
 		aliveMobs--;
+		altarLight.GetComponent<Light2D>().intensity = WaveProgress();
 	}
 }

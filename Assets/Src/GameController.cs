@@ -3,6 +3,7 @@
 public class GameController : MonoBehaviour
 {
 	public int maxWave = 10;
+	public GameObject globalLight, altarLight;
 
 	private int wave = 1;
 	private GameStatus status = GameStatus.Start;

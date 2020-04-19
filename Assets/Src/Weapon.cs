@@ -58,7 +58,7 @@ public class Weapon : MonoBehaviour
 	}
 
 	private void pistol() {
-		spawnBullet(transform.position, 0);
+		spawnBullet(transform.position, 0, 3f);
 		AudioController.instance.PlaySingle(pistolClip, 0.3f);
 
 		fireTime = 0.5f;
@@ -66,11 +66,11 @@ public class Weapon : MonoBehaviour
 
 	private void shotgun()
 	{
-		spawnBullet(transform.position, 5f);
-		spawnBullet(transform.position, 2f);
-		spawnBullet(transform.position, 0);
-		spawnBullet(transform.position, -2f);
-		spawnBullet(transform.position, -5f);
+		spawnBullet(transform.position, 5f, 1f);
+		spawnBullet(transform.position, 2f, 1f);
+		spawnBullet(transform.position, 0, 1f);
+		spawnBullet(transform.position, -2f, 1f);
+		spawnBullet(transform.position, -5f, 1f);
 
 		AudioController.instance.PlaySingle(shotgunClip, 0.3f);
 
@@ -79,7 +79,7 @@ public class Weapon : MonoBehaviour
 
 	private void lmg()
 	{
-		spawnBullet(transform.position, 0);
+		spawnBullet(transform.position, 0, 1f);
 
 		if (!source.isPlaying) {
 			source.Play();
@@ -88,9 +88,10 @@ public class Weapon : MonoBehaviour
 		fireTime = 0.1f;
 	}
 
-	private void spawnBullet(Vector3 position, float angle) {
+	private void spawnBullet(Vector3 position, float angle, float damage) {
 		var rotation = transform.rotation * Quaternion.Euler(new Vector3(0, 0, angle));
 		var bulletInstance = Instantiate(bullet, position, rotation);
+		bulletInstance.GetComponent<PlayerBullet>().damage = damage;
 		var bulletBody = bulletInstance.GetComponent<Rigidbody2D>();
 		bulletBody.velocity = (bulletInstance.transform.right) * 3f;
 

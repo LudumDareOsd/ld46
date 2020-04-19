@@ -3,8 +3,10 @@
 public class SuicideBomber : EnemyBase
 {
 	public float moveForce = 1.5f;
-	private Wall wall;
+
+	private Attackable target;
 	public override int scoreWorth => 20;
+
 	public new void Start()
 	{
 		base.Start();
@@ -18,10 +20,10 @@ public class SuicideBomber : EnemyBase
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.gameObject.CompareTag("Wall"))
+		if (collision.gameObject.CompareTag("Attackable"))
 		{
-			wall = collision.gameObject.GetComponent<Wall>();
-			wall.takeDamage(5);
+			target = collision.gameObject.GetComponent<Attackable>();
+			target.takeDamage(5);
 			takeDamage(100);
 		}
 	}

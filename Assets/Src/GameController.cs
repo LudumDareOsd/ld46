@@ -40,6 +40,8 @@ public class GameController : MonoBehaviour
 				break;
 			case GameStatus.Upgrade:
 				break;
+			case GameStatus.Dead:
+				break;
 			default:
 				break;
 		}
@@ -59,6 +61,7 @@ public class GameController : MonoBehaviour
 			}
 		}
 	}
+
 	public void UpgradeWalls(object sender, EventArgs e)
 	{
 		if (favor >= Walls[0].WallDefenseLevel)
@@ -76,6 +79,7 @@ public class GameController : MonoBehaviour
 			}
 		}
 	}
+
 	public void RestoreWalls(object sender, EventArgs e)
 	{
 		if (favor > 0)
@@ -93,22 +97,26 @@ public class GameController : MonoBehaviour
 			}
 		}
 	}
+
 	public void CloseUpgradeScreen(object sender, EventArgs e)
 	{
 		status = GameStatus.Wave;
 		hudController.CloseUpgradeScreen();
 	}
+
 	public void addToScore(int addAmount)
 	{
 		score += addAmount;
 		hudController.SetScore(score);
 	}
+
 	public void BeginNextWave()
 	{
 		wave++;
 		enemyController.StartWave(wave, WaveFinished);
 		hudController.SetWave(wave);
 	}
+
 	public void WaveFinished()
 	{
 		favor++;
@@ -116,10 +124,18 @@ public class GameController : MonoBehaviour
 		Invoke("BeginNextWave", 5f);
 	}
 
+	public void Die()
+	{
+		Debug.Log("You failed to summon the unclean one");
+		Time.timeScale = 0.0f;
+		status = GameStatus.Dead;
+	}
+
 	internal enum GameStatus
 	{
 		Start,
 		Wave,
-		Upgrade
+		Upgrade,
+		Dead
 	}
 }

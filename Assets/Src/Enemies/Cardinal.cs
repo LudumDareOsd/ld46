@@ -8,8 +8,9 @@ public class Cardinal : EnemyBase
 
 	private CardinalState state;
 	private float attackCooldown = 0f;
-	private Wall wall;
+	private Attackable target;
 	public override int scoreWorth => 30;
+
 	public new void Start()
 	{
 		base.Start();
@@ -25,14 +26,14 @@ public class Cardinal : EnemyBase
 				body.AddForce(transform.right * moveForce);
 				break;
 			case CardinalState.Attacking:
-				if (wall.dead)
+				if (target.dead)
 				{
 					state = CardinalState.Moving;
 				}
 				attackCooldown -= Time.deltaTime;
 				if (attackCooldown <= 0)
 				{
-					wall.takeDamage(2);
+					target.takeDamage(2);
 					attackCooldown = 1f;
 				}
 				break;
@@ -43,9 +44,9 @@ public class Cardinal : EnemyBase
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.gameObject.CompareTag("Wall"))
+		if (collision.gameObject.CompareTag("Attackable"))
 		{
-			wall = collision.gameObject.GetComponent<Wall>();
+			target = collision.gameObject.GetComponent<Attackable>();
 			state = CardinalState.Attacking;
 		}
 	}

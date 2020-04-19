@@ -8,8 +8,9 @@ public class Pope : EnemyBase
 
 	private PopeState state;
 	private float attackCooldown = 0f;
-	private Wall wall;
+	private Attackable target;
 	public override int scoreWorth => 100;
+
 	public new void Start()
 	{
 		base.Start();
@@ -25,14 +26,14 @@ public class Pope : EnemyBase
 				body.AddForce(transform.right * moveForce);
 				break;
 			case PopeState.Attacking:
-				if (wall.dead)
+				if (target.dead)
 				{
 					state = PopeState.Moving;
 				}
 				attackCooldown -= Time.deltaTime;
 				if (attackCooldown <= 0)
 				{
-					wall.takeDamage(5);
+					target.takeDamage(5);
 					attackCooldown = 2f;
 				}
 				break;
@@ -43,9 +44,9 @@ public class Pope : EnemyBase
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.gameObject.CompareTag("Wall"))
+		if (collision.gameObject.CompareTag("Attackable"))
 		{
-			wall = collision.gameObject.GetComponent<Wall>();
+			target = collision.gameObject.GetComponent<Attackable>();
 			state = PopeState.Attacking;
 		}
 	}

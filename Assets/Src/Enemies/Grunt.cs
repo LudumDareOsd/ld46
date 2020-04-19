@@ -6,7 +6,8 @@ public class Grunt : EnemyBase
 
 	private GruntState state;
 	private float attackCooldown = 0f;
-	private Wall wall;
+	private Attackable target;
+
 	public new void Start()
 	{
 		base.Start();
@@ -22,12 +23,12 @@ public class Grunt : EnemyBase
 				body.AddForce(transform.right * moveForce);
 				break;
 			case GruntState.Attacking:
-				if (wall.dead) {
+				if (target.dead) {
 					state = GruntState.Moving;
 				}
 				attackCooldown -= Time.deltaTime;
 				if (attackCooldown <= 0) {
-					wall.takeDamage(1);
+					target.takeDamage(1);
 					attackCooldown = 1f;
 				}
 				break;
@@ -38,9 +39,9 @@ public class Grunt : EnemyBase
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.gameObject.CompareTag("Wall"))
+		if (collision.gameObject.CompareTag("Attackable"))
 		{
-			wall = collision.gameObject.GetComponent<Wall>();
+			target = collision.gameObject.GetComponent<Attackable>();
 			state = GruntState.Attacking;
 		}
 	}

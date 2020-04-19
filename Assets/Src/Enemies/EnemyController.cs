@@ -34,7 +34,7 @@ public class EnemyController : MonoBehaviour
 		var isBosswave = newWave % 5 == 0;
 		waveTimer = spawnTimer = 0.0f;
 		currentMob = 0;
-		totalMobs = 3 + (newWave * 2);
+		totalMobs = 5 + (newWave * 2);
 		aliveMobs = totalMobs;
 		spawnDelay = totalWaveTime / (totalMobs + 1);
 

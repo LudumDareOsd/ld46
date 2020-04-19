@@ -4758,6 +4758,8 @@ MonoBehaviour:
   bgm: {fileID: 8300000, guid: 0109940f00ceb834f8645099af76fd36, type: 3}
   pauseInput: 1
   startScreen: {fileID: 1185500063}
+  gameOverScreen: {fileID: 2103223384}
+  conflagulationScreen: {fileID: 1273956739}
 --- !u!1 &1981909973
 GameObject:
   m_ObjectHideFlags: 0

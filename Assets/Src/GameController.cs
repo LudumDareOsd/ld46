@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour
 	public GameObject globalLight, altarLight;
 	public AudioClip bgm;
 	public bool pauseInput = true;
-	public GameObject startScreen;
+	public GameObject startScreen, gameOverScreen, conflagulationScreen;
 
 	private int score = 0; 
 	private int wave = 1;
@@ -156,9 +156,11 @@ public class GameController : MonoBehaviour
 
 	public void Die()
 	{
+		pauseInput = true;
 		Debug.Log("You failed to summon the unclean one");
 		//Time.timeScale = 0.0f;
 		status = GameStatus.Dead;
+		gameOverScreen.SetActive(true);
 	}
 
 	public void Restart()

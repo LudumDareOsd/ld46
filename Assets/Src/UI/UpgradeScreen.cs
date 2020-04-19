@@ -21,6 +21,9 @@ public class UpgradeScreen : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     private Sprite WallRestoreSprite;
     private Sprite WallRestoreHoverSprite;
     public Image WallRestoreImage;
+    public Image CloseUpgradeScreenImage;
+    public Sprite ExitSprite;
+    public Sprite ExitHoverSprite;
     public Texture2D cursor;
     void Start()
     {
@@ -108,38 +111,7 @@ public class UpgradeScreen : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 break;
         }
     }
-    public void onWeaponUpgradePointerEnter()
-    {
-        WeaponUpgradImage.sprite = WeaponUpgradeHoverSprite;
-    }
-    public void onWeaponUpgradePointerExit()
-    {
-        WeaponUpgradImage.sprite = WeaponUpgradeSprite;
-    }
-    public void onWallUpgradePointerEnter()
-    {
-        WallUpgradeImage.sprite = WallUpgradeHoverSprite;
-    }
-    public void onWallUpgradePointerExit()
-    {
-        WallUpgradeImage.sprite = WallUpgradeSprite;
-    }
-    public void onWallRestorePointerEnter()
-    {
-        WallRestoreImage.sprite = WallRestoreHoverSprite;
-    }
-    public void onWallRestorePointerExit()
-    {
-        WallRestoreImage.sprite = WallRestoreSprite;
-    }
-    public void onPentagramPointerEnter()
-    {
-        FavorImage.color = new Color(FavorImage.color.r, FavorImage.color.g, FavorImage.color.b, 1f);
-    }
-    public void onPentagramPointerExit()
-    {
-        FavorImage.color = new Color(FavorImage.color.r, FavorImage.color.g, FavorImage.color.b, 0.5f);
-    }
+    
     public void ShowUpgradeScreen(int favor, int playerweaponlevel, int walldefenselevel, int weaponupgradecost, int wallupgradecost, int wallrestorecost)
     {
         updateFavorLeft(favor);
@@ -197,6 +169,45 @@ public class UpgradeScreen : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         summon_click_handler(this, null);
     }
 
-
+    public void onWeaponUpgradePointerEnter()
+    {
+        WeaponUpgradImage.sprite = WeaponUpgradeHoverSprite;
+    }
+    public void onWeaponUpgradePointerExit()
+    {
+        WeaponUpgradImage.sprite = WeaponUpgradeSprite;
+    }
+    public void onWallUpgradePointerEnter()
+    {
+        WallUpgradeImage.sprite = WallUpgradeHoverSprite;
+    }
+    public void onWallUpgradePointerExit()
+    {
+        WallUpgradeImage.sprite = WallUpgradeSprite;
+    }
+    public void onWallRestorePointerEnter()
+    {
+        WallRestoreImage.sprite = WallRestoreHoverSprite;
+    }
+    public void onWallRestorePointerExit()
+    {
+        WallRestoreImage.sprite = WallRestoreSprite;
+    }
+    public void onPentagramPointerEnter()
+    {
+        FavorImage.color = new Color(FavorImage.color.r, FavorImage.color.g, FavorImage.color.b, 1f);
+    }
+    public void onPentagramPointerExit()
+    {
+        FavorImage.color = new Color(FavorImage.color.r, FavorImage.color.g, FavorImage.color.b, 0.5f);
+    }
+    public void onCloseScreenPointerEnter()
+    {
+        CloseUpgradeScreenImage.sprite = ExitHoverSprite;
+    }
+    public void onCloseScreenPointerExit()
+    {
+        CloseUpgradeScreenImage.sprite = ExitSprite;
+    }
 
 }

@@ -15,6 +15,7 @@ public class Pope : EnemyBase
 	{
 		base.Start();
 		state = PopeState.Moving;
+
 	}
 
 	public new void Update()

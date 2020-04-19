@@ -12,7 +12,7 @@ public class SuicideBomber : EnemyBase
 		base.Start();
 	}
 
-	public void Update() {
+	public new void Update() {
 		setAngle();
 		body.AddForce(transform.right * moveForce);
 		body.velocity = body.velocity * 0.9f;

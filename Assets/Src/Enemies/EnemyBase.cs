@@ -14,17 +14,23 @@ public class EnemyBase : MonoBehaviour, Enemy
 	protected Rigidbody2D body;
 	protected bool dead = false;
 	public virtual int scoreWorth { get => 10; }
+	private HpBar hpBar;
 
 	private AudioSource currentSource;
 
 	public void Start() {
 		hp = maxHp;
+		hpBar = gameObject.GetComponentInChildren<HpBar>();
 		enemyController = FindObjectOfType<EnemyController>();
 		gameController = FindObjectOfType<GameController>();
 		body = GetComponent<Rigidbody2D>();
 		var norm = transform.position / -transform.position.magnitude;
 		angle = Mathf.Atan2(norm.y, norm.x) * Mathf.Rad2Deg;
 		transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+		if (hpBar) {
+			hpBar.SetMaxHp(hp);
+			hpBar.SetHp(hp);
+		}
 	}
 
 	public void Update()
@@ -51,6 +57,10 @@ public class EnemyBase : MonoBehaviour, Enemy
 	public void takeDamage(float damage)
 	{
 		hp -= damage;
+
+		if (hpBar) {
+			hpBar.SetHp(hp);
+		}
 
 		if (currentSource == null) {
 			currentSource = AudioController.instance.PlaySingle(takeDamageAudio, 0.2f);

@@ -14,7 +14,7 @@ public class Grunt : EnemyBase
 		state = GruntState.Moving;
 	}
 
-	private void Update()
+	private new void Update()
 	{
 		switch (state)
 		{

@@ -25,20 +25,16 @@ public class UpgradeScreen : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public Sprite ExitSprite;
     public Sprite ExitHoverSprite;
     public Texture2D cursor;
-    void Start()
-    {
-        if (gameObject != null || !gameObject.activeSelf)
-        {
-            gameObject.SetActive(false);
-        }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
+	//void Start()
+	//{
+	//	if (gameObject != null || !gameObject.activeSelf)
+	//	{
+	//		gameObject.SetActive(false);
+	//	}
+	//}
 
-    public void updateFavorLeft(int newFavorleft)
+	public void updateFavorLeft(int newFavorleft)
     {
         if (newFavorleft >= FavorSprites.Length)
         {

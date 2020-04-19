@@ -31,7 +31,8 @@ public class EnemyController : MonoBehaviour
 
 	public void StartWave(int newWave, System.Action callback)
 	{
-		var isBosswave = newWave % 5 == 0;
+		//var isBosswave = newWave % 5 == 0;
+		var isBosswave = true;
 		waveTimer = spawnTimer = 0.0f;
 		currentMob = 0;
 		totalMobs = 5 + (newWave * 2);

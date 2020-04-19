@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 	public Texture2D cursor;
+	public GameController gameController;
 	private Rigidbody2D body;
 	private Weapon weapon;
 	private float stopfireCount = 0;
@@ -31,7 +32,7 @@ public class Player : MonoBehaviour
 		var angle = AngleBetweenTwoPoints(mouseWorldSpace, transform.position);
 		transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-		if (Input.GetButton("Fire1"))
+		if (Input.GetButton("Fire1") && !gameController.pauseInput)
 		{
 			weapon.Fire(Time.deltaTime);
 			stopfireCount = 0;

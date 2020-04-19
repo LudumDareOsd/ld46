@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour
 	public int maxWave = 10;
 	public GameObject globalLight, altarLight;
 	public AudioClip bgm;
+	public bool pauseInput = false;
 
 	private int score = 0; 
 	private int wave = 1;
@@ -137,6 +138,7 @@ public class GameController : MonoBehaviour
 
 	public void BeginNextWave()
 	{
+		pauseInput = false;
 		wave++;
 		enemyController.StartWave(wave, WaveFinished);
 		hudController.SetWave(wave);
@@ -144,6 +146,7 @@ public class GameController : MonoBehaviour
 
 	public void WaveFinished()
 	{
+		pauseInput = true;
 		favor++;
 		hudController.showUpgradeScreen(favor, Player.PlayerWeaponLevel + 1, Walls[0].WallDefenseLevel, WeaponUpgradeCost, WallUpgradeCost, WallRestoreCost);
 	}

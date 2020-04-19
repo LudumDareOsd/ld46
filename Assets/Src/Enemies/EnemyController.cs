@@ -33,10 +33,10 @@ public class EnemyController : MonoBehaviour
 		var isBosswave = newWave % 5 == 0;
 		waveTimer = spawnTimer = 0.0f;
 		currentMob = 0;
-		totalMobs = 3 + newWave;
+		totalMobs = 3 + (newWave * 2);
 		aliveMobs = totalMobs;
 		spawnDelay = totalWaveTime / (totalMobs + 1);
-		//spawnDelay = 3.0f - (2.0f * (newWave / 10)); // Wave 1 = 3sec, wave 10 = 1sec between spawns
+
 		Debug.Log("Spawning wave:" + newWave + " Mobs: " + totalMobs + " Bosswave:" + isBosswave);
 		StartCoroutine(SpawnWave(callback, isBosswave));
 	}

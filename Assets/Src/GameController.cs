@@ -36,7 +36,7 @@ public class GameController : MonoBehaviour
 		hudController.Upgrade3_Chosen += RestoreWalls;
 		hudController.SummonTheUncleanOne_Chosen += SummonTheUncleanOne;
 		hudController.CloseUpgradeScreen_Chosen += onCloseUpgradeScreen;
-		hudController.SetWave(wave);
+		
 		hudController.SetScore(score);
 		audioController.PlayLooping(bgm, 0.2f);
 		if (startScreen) startScreen.SetActive(true);
@@ -169,6 +169,7 @@ public class GameController : MonoBehaviour
 	public void StartGame()
 	{
 		pauseInput = false;
+		hudController.SetWave(wave);
 		enemyController.StartWave(wave, WaveFinished);
 	}
 

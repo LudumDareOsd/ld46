@@ -43,7 +43,7 @@ public class WaveTexts : MonoBehaviour
         {
             UpperLeftWaveSecondNumber.color = new Color(255f, 255f, 255f, 0f);
         }
-        FadInOutCenterImages();
+		FadeInOutCenterImages();
     }
     public void FadeOutText(float time, Text text)
     {
@@ -62,7 +62,7 @@ public class WaveTexts : MonoBehaviour
             yield return null;
         }
     }
-    public void FadInOutCenterImages()
+    public void FadeInOutCenterImages()
     {
         CenterWaveFirstNumber.sprite = FirstNumberSprite;
         StartCoroutine(FadeInImageRoutine(1f, CenterWaveTextImage));
@@ -72,7 +72,7 @@ public class WaveTexts : MonoBehaviour
             CentertWaveSecondNumber.sprite = SecondNumberSprite;
             StartCoroutine(FadeInImageRoutine(1f, CentertWaveSecondNumber));
         }
-        Invoke("FadeOutCenterImages", 1f);
+        Invoke("FadeOutCenterImages", 1.5f);
     }
     public void FadeOutCenterImages()
     {

@@ -2105,7 +2105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4104,7 +4104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4751,7 +4751,7 @@ MonoBehaviour:
   globalLight: {fileID: 372416577}
   altarLight: {fileID: 812076462}
   bgm: {fileID: 8300000, guid: 0109940f00ceb834f8645099af76fd36, type: 3}
-  pauseInput: 0
+  pauseInput: 1
   startScreen: {fileID: 1185500063}
 --- !u!1 &1981909973
 GameObject:

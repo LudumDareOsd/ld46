@@ -34,7 +34,7 @@ public class Cardinal : EnemyBase
 				attackCooldown -= Time.deltaTime;
 				if (attackCooldown <= 0)
 				{
-					target.takeDamage(2);
+					target.takeDamage(3);
 					attackCooldown = 1f;
 				}
 				break;

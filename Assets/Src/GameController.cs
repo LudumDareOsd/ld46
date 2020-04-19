@@ -6,6 +6,7 @@ public class GameController : MonoBehaviour
 {
 	public int maxWave = 10;
 	public GameObject globalLight, altarLight;
+	public AudioClip bgm;
 
 	private int score = 0; 
 	private int wave = 1;
@@ -15,6 +16,7 @@ public class GameController : MonoBehaviour
 	private GameStatus status = GameStatus.Start;
 	private EnemyController enemyController;
 	private HudController hudController;
+	private AudioController audioController;
 	private int WeaponUpgradeCost { get => Player.PlayerWeaponLevel + 1; }
 	private int WallUpgradeCost { get => Walls[0].WallDefenseLevel; }
 	private int WallRestoreCost { get => 1; }
@@ -23,6 +25,7 @@ public class GameController : MonoBehaviour
     {
 		enemyController = FindObjectOfType<EnemyController>();
 		hudController = FindObjectOfType<HudController>();
+		audioController = FindObjectOfType<AudioController>();
 		Walls = FindObjectsOfType<Wall>();
 		Player = FindObjectOfType<Player>();
 		hudController.Upgrade1_Chosen += UpgradeWeapon;
@@ -32,6 +35,7 @@ public class GameController : MonoBehaviour
 		hudController.SetWave(wave);
 		hudController.SetScore(score);
 		enemyController.StartWave(wave, WaveFinished);
+		audioController.PlayLooping(bgm, 0.4f);
 	}
 
 	void Update()

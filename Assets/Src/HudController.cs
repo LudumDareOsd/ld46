@@ -8,9 +8,10 @@ public class HudController : MonoBehaviour
 {
     public ScoreText ScoreText;
     public UpgradeScreen UpgradeScreen;
+    public GameoverScreen gameOverScreen;
     public WaveTexts WaveTexts;
-    // Start is called before the first frame update
-    void Start()
+
+	void Start()
     {
         if (UpgradeScreen != null)
         {

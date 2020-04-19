@@ -1028,13 +1028,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyController: {fileID: 610401449}
-  frame1: {fileID: 8588256982454725679, guid: 1804d8227a4db2d45bf2e77235e31b9f, type: 3}
-  frame2: {fileID: -3506032441560358805, guid: 1804d8227a4db2d45bf2e77235e31b9f, type: 3}
-  frame3: {fileID: -1476911774934521056, guid: 1804d8227a4db2d45bf2e77235e31b9f, type: 3}
-  frame4: {fileID: 5784495846040420835, guid: 1804d8227a4db2d45bf2e77235e31b9f, type: 3}
-  frame5: {fileID: -3117709420928484512, guid: 1804d8227a4db2d45bf2e77235e31b9f, type: 3}
-  frame6: {fileID: 3830428692246412460, guid: 1804d8227a4db2d45bf2e77235e31b9f, type: 3}
-  frame7: {fileID: 4233478233606195780, guid: 1804d8227a4db2d45bf2e77235e31b9f, type: 3}
+  frames:
+  - {fileID: 0}
+  - {fileID: 8588256982454725679, guid: 1804d8227a4db2d45bf2e77235e31b9f, type: 3}
+  - {fileID: -3506032441560358805, guid: 1804d8227a4db2d45bf2e77235e31b9f, type: 3}
+  - {fileID: -1476911774934521056, guid: 1804d8227a4db2d45bf2e77235e31b9f, type: 3}
+  - {fileID: 5784495846040420835, guid: 1804d8227a4db2d45bf2e77235e31b9f, type: 3}
+  - {fileID: -3117709420928484512, guid: 1804d8227a4db2d45bf2e77235e31b9f, type: 3}
+  - {fileID: 3830428692246412460, guid: 1804d8227a4db2d45bf2e77235e31b9f, type: 3}
+  - {fileID: 4233478233606195780, guid: 1804d8227a4db2d45bf2e77235e31b9f, type: 3}
 --- !u!1 &187560670
 GameObject:
   m_ObjectHideFlags: 0

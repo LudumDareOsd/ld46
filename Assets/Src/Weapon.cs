@@ -79,7 +79,7 @@ public class Weapon : MonoBehaviour
 
 	private void lmg()
 	{
-		spawnBullet(transform.position, 0, 0.8f);
+		spawnBullet(transform.position, Random.Range(-4f, 4f), 0.6f);
 
 		if (!source.isPlaying) {
 			source.Play();
@@ -94,7 +94,6 @@ public class Weapon : MonoBehaviour
 		bulletInstance.GetComponent<PlayerBullet>().damage = damage;
 		var bulletBody = bulletInstance.GetComponent<Rigidbody2D>();
 		bulletBody.velocity = (bulletInstance.transform.right) * 2f;
-
 	}
 
 	public void UpgradeWeapon()

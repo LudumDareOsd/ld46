@@ -58,10 +58,10 @@ public class Weapon : MonoBehaviour
 	}
 
 	private void pistol() {
-		spawnBullet(transform.position, 0, 3f);
+		spawnBullet(transform.position, 0, 2f);
 		AudioController.instance.PlaySingle(pistolClip, 0.1f);
 
-		fireTime = 0.5f;
+		fireTime = 0.7f;
 	}
 
 	private void shotgun()
@@ -74,16 +74,16 @@ public class Weapon : MonoBehaviour
 
 		AudioController.instance.PlaySingle(shotgunClip, 0.1f);
 
-		fireTime = 1f;
+		fireTime = 1.2f;
 	}
 
 	private void lmg()
 	{
-		spawnBullet(transform.position, 0, 1f);
+		spawnBullet(transform.position, 0, 0.8f);
 
 		if (!source.isPlaying) {
 			source.Play();
-		} 
+		}
 
 		fireTime = 0.1f;
 	}
@@ -93,7 +93,7 @@ public class Weapon : MonoBehaviour
 		var bulletInstance = Instantiate(bullet, position, rotation);
 		bulletInstance.GetComponent<PlayerBullet>().damage = damage;
 		var bulletBody = bulletInstance.GetComponent<Rigidbody2D>();
-		bulletBody.velocity = (bulletInstance.transform.right) * 3f;
+		bulletBody.velocity = (bulletInstance.transform.right) * 2f;
 
 	}
 

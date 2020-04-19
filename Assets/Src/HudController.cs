@@ -8,7 +8,6 @@ public class HudController : MonoBehaviour
 {
     public ScoreText ScoreText;
     public UpgradeScreen UpgradeScreen;
-    public GameoverScreen gameOverScreen;
     public WaveTexts WaveTexts;
 
 	void Start()

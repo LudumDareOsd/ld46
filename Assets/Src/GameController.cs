@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
 	public int maxWave = 10;
 	public GameObject globalLight, altarLight;
 	public AudioClip bgm;
-	public bool pauseInput = false;
+	public bool pauseInput = true;
+	public GameObject startScreen;
 
 	private int score = 0; 
 	private int wave = 1;
@@ -36,8 +38,8 @@ public class GameController : MonoBehaviour
 		hudController.CloseUpgradeScreen_Chosen += CloseUpgradeScreen;
 		hudController.SetWave(wave);
 		hudController.SetScore(score);
-		enemyController.StartWave(wave, WaveFinished);
 		audioController.PlayLooping(bgm, 0.2f);
+		if (startScreen) startScreen.SetActive(true);
 	}
 
 	void Update()
@@ -151,8 +153,19 @@ public class GameController : MonoBehaviour
 	public void Die()
 	{
 		Debug.Log("You failed to summon the unclean one");
-		Time.timeScale = 0.0f;
+		//Time.timeScale = 0.0f;
 		status = GameStatus.Dead;
+	}
+
+	public void Restart()
+	{
+		SceneManager.LoadScene("main");
+	}
+	
+	public void StartGame()
+	{
+		pauseInput = false;
+		enemyController.StartWave(wave, WaveFinished);
 	}
 
 	private IEnumerator WhenWaveFinished() {

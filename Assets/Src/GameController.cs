@@ -115,7 +115,9 @@ public class GameController : MonoBehaviour
 	{
 		if (favor >= 5)
 		{
-			Debug.Log("Congranulations!!!");
+			pauseInput = true;
+			hudController.CloseUpgradeScreen();
+			conflagulationScreen.SetActive(true);
 		}
 		else
 		{

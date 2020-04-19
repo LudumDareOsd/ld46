@@ -4339,8 +4339,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 173, y: -48}
-  m_SizeDelta: {x: 40.593384, y: 48}
+  m_AnchoredPosition: {x: 166.7, y: -48}
+  m_SizeDelta: {x: 30, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1568014192
 MonoBehaviour:
@@ -4759,7 +4759,7 @@ MonoBehaviour:
   pauseInput: 1
   startScreen: {fileID: 1185500063}
   gameOverScreen: {fileID: 2103223384}
-  conflagulationScreen: {fileID: 1273956739}
+  conflagulationScreen: {fileID: 1856632386}
 --- !u!1 &1981909973
 GameObject:
   m_ObjectHideFlags: 0
@@ -5250,7 +5250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.33333334, g: 0.33333334, b: 0.33333334, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

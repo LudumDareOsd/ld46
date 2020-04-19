@@ -6,6 +6,6 @@ public class Explosion : MonoBehaviour
 
     void Start()
     {
-		AudioController.instance.PlaySingle(clip, 0.5f);
+		AudioController.instance.PlaySingle(clip, 0.1f);
     }
 }

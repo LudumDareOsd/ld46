@@ -35,7 +35,7 @@ public class GameController : MonoBehaviour
 		hudController.SetWave(wave);
 		hudController.SetScore(score);
 		enemyController.StartWave(wave, WaveFinished);
-		audioController.PlayLooping(bgm, 0.4f);
+		audioController.PlayLooping(bgm, 0.2f);
 	}
 
 	void Update()

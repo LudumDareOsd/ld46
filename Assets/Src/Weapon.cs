@@ -18,7 +18,7 @@ public class Weapon : MonoBehaviour
 		source = AudioController.instance.createSource().GetComponent<AudioSource>();
 
 		source.clip = machineGunClip;
-		source.volume = 0.7f;
+		source.volume = 0.5f;
 		source.spatialBlend = 0;
 		source.dopplerLevel = 0;
 		source.spread = 0;
@@ -59,7 +59,7 @@ public class Weapon : MonoBehaviour
 
 	private void pistol() {
 		spawnBullet(transform.position, 0, 3f);
-		AudioController.instance.PlaySingle(pistolClip, 0.3f);
+		AudioController.instance.PlaySingle(pistolClip, 0.1f);
 
 		fireTime = 0.5f;
 	}
@@ -72,7 +72,7 @@ public class Weapon : MonoBehaviour
 		spawnBullet(transform.position, -2f, 1f);
 		spawnBullet(transform.position, -5f, 1f);
 
-		AudioController.instance.PlaySingle(shotgunClip, 0.3f);
+		AudioController.instance.PlaySingle(shotgunClip, 0.1f);
 
 		fireTime = 1f;
 	}

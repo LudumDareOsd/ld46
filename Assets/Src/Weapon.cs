@@ -61,14 +61,15 @@ public class Weapon : MonoBehaviour
 		}
 	}
 
-	private void pistol() {
+	private void pistol() // dps 2,8571428571428571428571428571429
+	{
 		spawnBullet(transform.position, 0, 2f);
 		AudioController.instance.PlaySingle(pistolClip, 0.1f);
 
 		fireTime = 0.7f;
 	}
 
-	private void shotgun()
+	private void shotgun() // dps ‭4,1666666666666666666666666666667‬
 	{
 		spawnBullet(transform.position, 5f, 1f);
 		spawnBullet(transform.position, 2f, 1f);
@@ -81,9 +82,9 @@ public class Weapon : MonoBehaviour
 		fireTime = 1.2f;
 	}
 
-	private void lmg()
+	private void lmg()  // dps 6‬
 	{
-		spawnBullet(transform.position, Random.Range(-4f, 4f), 0.6f);
+		spawnBullet(transform.position, Random.Range(-3f, 3f), 0.6f);
 
 		if (!source.isPlaying) {
 			source.Play();

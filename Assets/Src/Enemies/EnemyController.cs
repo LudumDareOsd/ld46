@@ -35,7 +35,7 @@ public class EnemyController : MonoBehaviour
 		//var isBosswave = true;
 		waveTimer = spawnTimer = 0.0f;
 		currentMob = 0;
-		totalMobs = 5 + (newWave * 2);
+		totalMobs = 5 + Mathf.RoundToInt(newWave * 2.5f);
 		aliveMobs = totalMobs;
 		spawnDelay = totalWaveTime / (totalMobs + 1);
 
@@ -50,7 +50,7 @@ public class EnemyController : MonoBehaviour
 
 	public float WaveProgressContinuous()
 	{
-		return Mathf.Min(waveTimer / 30f, 1.0f);
+		return Mathf.Min(waveTimer / 45f, 1.0f);
 	}
 
 	private IEnumerator SpawnWave(System.Action callback = null, bool bosswave = false)

@@ -27,11 +27,11 @@ public class Weapon : MonoBehaviour
 
 	public void Update() {
 		fireTime -= Time.deltaTime;
-		if (Input.GetKey(KeyCode.Alpha1)) {
+		if (Input.GetKey(KeyCode.Alpha1) || Input.GetButton("JoyB_A")) {
 			type = 0;
-		} else if (Input.GetKey(KeyCode.Alpha2) && maxtype >= 1) {
+		} else if ((Input.GetKey(KeyCode.Alpha2) || Input.GetButton("JoyB_X")) && maxtype >= 1) {
 			type = 1;
-		} else if (Input.GetKey(KeyCode.Alpha3) && maxtype >= 2) {
+		} else if ((Input.GetKey(KeyCode.Alpha3) || Input.GetButton("JoyB_Y")) && maxtype >= 2) {
 			type = 2;
 		}
 	}

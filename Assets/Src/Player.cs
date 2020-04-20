@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
 	private Rigidbody2D body;
 	private Weapon weapon;
 	private float stopfireCount = 0;
+	private float angle = 0;
+	private Vector3 mousepos = Vector3.zero;
 
 	public void Start()
 	{
@@ -21,11 +23,24 @@ public class Player : MonoBehaviour
 
 	void Update()
     {
+		Vector3 inputDirection = Vector3.zero;
+		inputDirection.x = Input.GetAxisRaw("Joy X");
+		inputDirection.y = Input.GetAxisRaw("Joy Y");
+
+		var useController = inputDirection.magnitude > 0.2f;
+		var useMouse = (mousepos != Input.mousePosition);
+
 		if (!gameController.pauseInput) {
-			var mouseScreenPosition = Input.mousePosition;
-			mouseScreenPosition.z = transform.position.z;
-			var mouseWorldSpace = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
-			var angle = AngleBetweenTwoPoints(mouseWorldSpace, transform.position);
+			if (useMouse)
+			{
+				mousepos = Input.mousePosition;
+				var mouseWorldSpace = Camera.main.ScreenToWorldPoint(mousepos);
+				angle = AngleBetweenTwoPoints(mouseWorldSpace, transform.position);
+			}
+			else if (useController)
+			{
+				angle = AngleBetweenTwoPoints(transform.position, transform.position + inputDirection);
+			}
 			transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
 			var moveHorizontal = Input.GetAxis("Horizontal");

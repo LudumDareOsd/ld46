@@ -34,6 +34,26 @@ public class UpgradeScreen : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 	//	}
 	//}
 
+	private void Update()
+	{
+		if (Input.GetButton("JoyB_A"))
+		{
+			clickUpgrade1();
+		}
+		else if (Input.GetButton("JoyB_X"))
+		{
+			clickUpgrade2();
+		}
+		else if (Input.GetButton("JoyB_Y"))
+		{
+			clickUpgrade3();
+		}
+		else if (Input.GetButton("JoyB_B"))
+		{
+			ClickCloseUpgradeScreen();
+		}
+	}
+
 	public void updateFavorLeft(int newFavorleft)
     {
         if (newFavorleft >= FavorSprites.Length)

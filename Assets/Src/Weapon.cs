@@ -11,7 +11,7 @@ public class Weapon : MonoBehaviour
 	private AudioSource source; 
 	private Collider2D weaponColl;
 	private float fireTime = 0f;
-	private int type = 0;
+	private int type = 0, maxtype = 0;
 
 	public void Start() {
 		weaponColl = GetComponentInParent<Collider2D>();
@@ -26,10 +26,14 @@ public class Weapon : MonoBehaviour
 	}
 
 	public void Update() {
-
-
-
 		fireTime -= Time.deltaTime;
+		if (Input.GetKey(KeyCode.Alpha1)) {
+			type = 0;
+		} else if (Input.GetKey(KeyCode.Alpha2) && maxtype >= 1) {
+			type = 1;
+		} else if (Input.GetKey(KeyCode.Alpha3) && maxtype >= 2) {
+			type = 2;
+		}
 	}
 
 	public void Fire(float delta) {
@@ -99,6 +103,7 @@ public class Weapon : MonoBehaviour
 	public void UpgradeWeapon()
 	{
 		type++;
+		maxtype++;
 	}
 	public int WeaponLevel { get => type; }
 }

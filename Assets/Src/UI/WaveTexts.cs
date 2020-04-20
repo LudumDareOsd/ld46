@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class WaveTexts : MonoBehaviour
 {
-    //public Text wavetext;
     public Sprite[] NumberSprites;
     private Sprite FirstNumberSprite;
     private Sprite SecondNumberSprite;
@@ -17,17 +16,6 @@ public class WaveTexts : MonoBehaviour
     public Image CentertWaveSecondNumber;
     private int wave = 0;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void WaveChange(int newWave)
     {
         wave = newWave;

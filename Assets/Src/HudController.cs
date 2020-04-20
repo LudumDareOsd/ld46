@@ -42,10 +42,13 @@ public class HudController : MonoBehaviour
             WaveTexts.WaveChange(wave);
         }
     }
-
-    public void showUpgradeScreen(int favor, int playerweaponlevel, int walldefenselevel, int weaponupgradecost, int wallupgradecost, int wallrestorecost)
+    public void onWallHealthIsFull()
     {
-        UpgradeScreen.ShowUpgradeScreen(favor, playerweaponlevel, walldefenselevel, weaponupgradecost, wallupgradecost, wallrestorecost);
+        UpgradeScreen.onWallHealthIsFull();
+    }
+    public void showUpgradeScreen(int favor, int playerweaponlevel, int walldefenselevel, int weaponupgradecost, int wallupgradecost, int wallrestorecost, bool wallHealthIsFull)
+    {
+        UpgradeScreen.ShowUpgradeScreen(favor, playerweaponlevel, walldefenselevel, weaponupgradecost, wallupgradecost, wallrestorecost, wallHealthIsFull);
     }
     public void UpdateFavorLeft(int favor)
     {

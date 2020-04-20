@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -23,6 +24,7 @@ public class GameController : MonoBehaviour
 	private int WeaponUpgradeCost { get => Player.PlayerWeaponLevel + 1; }
 	private int WallUpgradeCost { get => Walls[0].WallDefenseLevel; }
 	private int WallRestoreCost { get => 1; }
+	private bool WallHealthIsFull { get => Walls.All(wall => wall.FullHealth); }
 
 	void Start()
     {
@@ -96,7 +98,7 @@ public class GameController : MonoBehaviour
 
 	public void RestoreWalls(object sender, EventArgs e)
 	{
-		if (favor > 0)
+		if (favor > 0 && !WallHealthIsFull)
 		{
 			favor -= 1;
 			foreach (var wall in Walls)
@@ -105,6 +107,10 @@ public class GameController : MonoBehaviour
 			}
 			hudController.UpdateFavorLeft(favor);
 			hudController.updateWallRestoreCost(WallRestoreCost);
+			if (WallHealthIsFull)
+			{
+				hudController.onWallHealthIsFull();
+			}
 			if (favor == 0)
 			{
 				CloseUpgradeScreen();
@@ -153,7 +159,7 @@ public class GameController : MonoBehaviour
 	{
 		pauseInput = true;
 		favor++;
-		hudController.showUpgradeScreen(favor, Player.PlayerWeaponLevel + 1, Walls[0].WallDefenseLevel, WeaponUpgradeCost, WallUpgradeCost, WallRestoreCost);
+		hudController.showUpgradeScreen(favor, Player.PlayerWeaponLevel + 1, Walls[0].WallDefenseLevel, WeaponUpgradeCost, WallUpgradeCost, WallRestoreCost, WallHealthIsFull);
 	}
 
 	public void Die()

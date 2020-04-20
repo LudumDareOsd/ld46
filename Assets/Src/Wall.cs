@@ -2,6 +2,7 @@
 
 public class Wall : Attackable
 {
+	public bool FullHealth { get => hp == maxHp; }
 	public new void Start()
 	{
 		base.Start();

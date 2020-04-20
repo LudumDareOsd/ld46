@@ -127,15 +127,27 @@ public class UpgradeScreen : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 break;
         }
     }
+
+    public void onWallHealthIsFull()
+    {
+        WallRestoreImage.sprite = WallRestoreSprite = WallRestoreHoverSprite = WallRestoreSprites[4];
+    }
     
-    public void ShowUpgradeScreen(int favor, int playerweaponlevel, int walldefenselevel, int weaponupgradecost, int wallupgradecost, int wallrestorecost)
+    public void ShowUpgradeScreen(int favor, int playerweaponlevel, int walldefenselevel, int weaponupgradecost, int wallupgradecost, int wallrestorecost, bool wallHealthIsFull)
     {
         updateFavorLeft(favor);
         updatePlayerWeaponLevel(playerweaponlevel);
         updateWallDefenseLevel(walldefenselevel);
         updateWeaponUpgradeCost(weaponupgradecost);
         updateWallUpgradeCost(wallupgradecost);
-        updateWallRestoreCost(wallrestorecost);
+        if (wallHealthIsFull)
+        {
+            onWallHealthIsFull();
+        }
+        else
+        {
+            updateWallRestoreCost(wallrestorecost);
+        }
         gameObject.SetActive(true);
     }
     public void CloseUpgradeScreen()
